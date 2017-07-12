@@ -1,0 +1,60 @@
+/* ==========================
+*  User profile
+============================*/
+
+.user-header {
+	height: 200px;
+	background: #e3e3e3;
+
+}
+
+ul.tabs {
+	list-style: none;
+	color: #000;
+	margin: 10px 0;
+	padding: 0;
+	/*overflow: auto;*/
+}
+
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+
+}
+
+ul.tabs li:after {
+	content: none;
+}
+ul.tabs li a {
+	color: #000;
+	text-decoration: none;
+	padding: 10px;
+	border-radius: 3px;
+	border-right: 1px solid #e3e3e3;
+	transition: all .5s;
+}
+
+ul.tabs li a:hover {
+	background: #e3e3e3;
+}
+
+footer {
+	clear: both;
+}
+
+
+.usr-self-single-review .restaurant .desc h5 {
+	font-weight: bold;
+	margin: 0;
+}
+
+.usr-self-single-review .restaurant .desc .cat a {
+	padding: 0;
+	margin-top: 0;
+
+}
+
+.usr-self-single-review .comment {
+	margin-top: 10px;
+}
