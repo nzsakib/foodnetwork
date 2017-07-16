@@ -41,7 +41,7 @@ class ProfileController extends Controller
             if(!File::exists($dir)) {
                 // path does not exist
                 //$old = umask(0);
-                $path = File::makeDirectory( $dir, 0777 );
+                $path = File::makeDirectory( $dir, 0775 );
                 //umask($old);
 
             }
