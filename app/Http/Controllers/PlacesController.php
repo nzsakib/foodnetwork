@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\TransferStats;
 use App\Review;
 use Auth;
+use DB;
 
 class PlacesController extends Controller
 {
@@ -59,9 +60,19 @@ class PlacesController extends Controller
         // dd($reviews);
         // Get reviews from database 
         
-        $dbReviews = Review::with('user')->where('place_id', $id)->latest()->get();
-        // $db = $dbReviews->toArray();
+        //$dbReviews = Review::with('user')->where('place_id', $id)->latest()->get();
+        $dbReviews = Review::with(['user', 'photo'])->where('reviews.place_id', $id)
+                             ->latest()
+                             ->get();
+        // $dbReviews = DB::table('reviews')
+        //     ->where('reviews.place_id', $id)
+        //     ->leftJoin('photos', 'reviews.id', '=', 'photos.review_id')
+        //     ->orderBy('reviews.id', 'ASC')
+        //     ->get();
 
+
+        // $db = $dbReviews->toArray();
+        // dd($db);
     	// if there are photos 
     	if(isset($shop->photos)) {
     		$photos = [];

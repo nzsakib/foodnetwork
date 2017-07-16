@@ -62,7 +62,7 @@
         <div class="new-comment">
         @if ( isset($user) )
             
-            <form action="{{ url('comments') }}" method="POST">
+            <form enctype="multipart/form-data" action="{{ url('comments') }}" method="POST">
             @include('partials/errors')
                 <div class="form-group">
                 <label class="pull-left">Your Rating:</label>
@@ -91,7 +91,7 @@
     <div class="form-group ">
         <textarea name="body" id="comment" cols="8" rows="2" placeholder="Type your comment here" class="form-control comment-box"></textarea>
         <a href="#" class="image-icon"><i class="fa fa-camera" aria-hidden="true"></i></a>
-        <input type="file" name="review-image" multiple accept="image/*" />
+        <input type="file" name="review-image[]" multiple accept="image/*" />
     </div>
     
     <button class="btn btn-primary comment-btn" type="submit">Submit</button>
@@ -120,6 +120,17 @@
                         <h4><a href="/user/{{ $review->user->id }}">{{ $review->user->name }}</a></h4>
                         <span class="timeline"> {{ $review->created_at->diffForHumans() }}</span>
                         <p>{!! nl2br($review->body) !!}</p>
+
+                        @if(count($review->photo) > 0)
+                            <div class="row comment-img">
+                                @foreach ($review->photo as $p)
+                                    <div class="col-md-6">
+                                    
+                                        <img src="{{ url('biz/images/') . '/' . $review->place_id . '/'. $p->filename }}" alt="" class="img-responsive">
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
                     </div> <!-- end user-comments -->
                 </div> <!-- end row, single comment -->
             @endforeach

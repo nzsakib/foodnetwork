@@ -8,6 +8,11 @@ class Review extends Model
 {
     protected $fillable = ['user_id', 'body', 'rating', 'place_id'];
 
+    public function photo()
+    {
+    	return $this->hasMany('App\Photo', 'review_id');
+    }
+    
     public function user()
     {
     	return $this->belongsTo('App\User', 'user_id');

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Photo;
 use App\Review;
 use App\User;
 use Auth;
 use Image;
+use File;
+use Storage;
 
 class ProfileController extends Controller
 {
@@ -29,8 +32,48 @@ class ProfileController extends Controller
     		'body' => 'required',
     		'place_id' => 'required'
     	]);
-    	// dd(request(['user_id', 'body', 'rating', 'place_id']));
-    	Review::create(request(['user_id', 'body', 'rating', 'place_id']));
+        // dd(request(['user_id', 'body', 'rating', 'place_id']));
+        if(request()->hasFile('review-image'))
+        {
+            $images = request()->file('review-image');
+            $imageNames = [];
+            $dir = public_path('biz/images/' . request('place_id'));
+            if(!File::exists($dir)) {
+                // path does not exist
+                //$old = umask(0);
+                $path = File::makeDirectory( $dir, 0777 );
+                //umask($old);
+
+            }
+            foreach ($images as $image) 
+            {
+                $filename = 'biz-' . request('place_id') . 'user-' . Auth::id() . 't-' . time() . '-' . $image->getClientOriginalName();
+                
+                $image->move($dir, $filename);
+                $imageNames[] = $filename;
+            }
+            
+        }
+        if(isset($imageNames)) 
+        {
+            $data = request(['user_id', 'body', 'rating', 'place_id']);
+            $data['photo'] = 1;
+            $review = Review::create($data);
+            foreach ($imageNames as $image) 
+            {
+                // save to db 
+                // place id, filename, review id
+                $photo = new Photo();
+                $photo->place_id = request('place_id');
+                $photo->filename = $image;
+                $photo->review_id = $review->id;
+                $photo->save();
+            }   
+        }
+        else {
+    	   Review::create(request(['user_id', 'body', 'rating', 'place_id'])); 
+        }
+        // dd(request(['user_id', 'body', 'rating', 'place_id']));
 
     	return redirect()->back();
     }

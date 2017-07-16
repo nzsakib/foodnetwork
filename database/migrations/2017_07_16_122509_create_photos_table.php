@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReviewsTable extends Migration
+class CreatePhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,18 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->text('body');
-            $table->integer('rating');
-            $table->string('place_id', 400);
+            $table->string('place_id');
+            $table->string('filename');
+            $table->integer('review_id')->unsigned()->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')
+
+            $table->foreign('review_id')
                     ->references('id')
-                    ->on('users')
+                    ->on('reviews')
                     ->onDelete('cascade');
-            
         });
     }
 
@@ -36,6 +35,6 @@ class CreateReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('Photos');
     }
 }
