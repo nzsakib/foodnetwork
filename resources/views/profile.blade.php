@@ -41,11 +41,13 @@
 
             <!-- gallary and info section -->
             <div class="row">
-                <div class="col-md-4 card">
+                <div class="col-md-3 card">
                     <div id="topmap"></div>
                 </div>
-                <div class="col-md-8">
-                    
+                <div class="col-md-9 img-gallary">
+                    <img src="http://via.placeholder.com/250x250" alt="">
+                    <img src="http://via.placeholder.com/250x250" alt="">
+                    <img src="http://via.placeholder.com/250x250" alt="">
                 </div>
             </div>
         </div> <!-- end container -->
@@ -86,12 +88,16 @@
                 {{ csrf_field() }}
     <input type="hidden" name="place_id" value="{{ $shop->place_id }}">
     <input type="hidden" name="user_id" value="{{ $user->id }}">
-                <div class="form-group">
-                    <textarea name="body" id="comment" cols="8" rows="2" placeholder="Type your comment here" class="form-control"></textarea>
-                </div>
-
-                <button class="btn btn-primary comment-btn" type="submit">Submit</button>
+    <div class="form-group ">
+        <textarea name="body" id="comment" cols="8" rows="2" placeholder="Type your comment here" class="form-control comment-box"></textarea>
+        <a href="#" class="image-icon"><i class="fa fa-camera" aria-hidden="true"></i></a>
+        <input type="file" name="review-image" multiple accept="image/*" />
+    </div>
+    
+    <button class="btn btn-primary comment-btn" type="submit">Submit</button>
             </form>
+            <img id="image" />
+            <div id="image-holder"></div>
         @else 
 
         <p>Please  <a href="/auth/register">Register</a> or <a href="/auth/login?r={{ parse_url(url()->current())['path'] }}">Login</a> to post a comment</p>
@@ -182,16 +188,7 @@ center: {lat: {{ $shop->geometry->location->lat }}, lng: {{ $shop->geometry->loc
         });
       }
 
-      function topmap(){
-        var map = new google.maps.Map(document.getElementById('topmap'), {
-center: {lat: {{ $shop->geometry->location->lat }}, lng: {{ $shop->geometry->location->lng }} },
-          zoom: 18
-        });
-
-        var infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-      }
-      topmap();
+      
     </script>
     {{-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key={{ env('MAP_API_KEY') }}&libraries=places&callback=initMap">

@@ -1,4 +1,43 @@
 /* ==========================
+*  Comment/Review Box
+============================*/
+/*Set icon to top right*/
+.comment-box {
+	position: relative;
+	/*background: #666;*/
+}
+
+.image-icon {
+	position: absolute;
+	top: 50px;
+	right: 30px;
+	font-size: 18px;
+	color: #666;
+}
+
+.new-comment input[type=file] {
+	display: none;
+}
+
+.new-comment #image-holder {
+	margin-top: 10px;
+}
+.new-comment #image-holder img {
+	width: 80px;
+	height: 80px;
+	margin-right: 10px;
+	border: 1px solid #e3e3e3;
+}
+
+/* ==========================
+*  Helpers
+============================*/
+.center {
+	text-align: center;
+}
+
+
+/* ==========================
 *  Front page
 ============================*/
 .search {
@@ -222,11 +261,15 @@ span.nav-link {
 	
 	width: 400px;
 	margin: auto;
-	border: 1px solid grey;
+	/*border: 1px solid grey;*/
 	padding: 20px; 
 	border-radius: 5px;
 	/*box-shadow: 0 0 10px 2px rgba(0,0,0,.5);*/
 	margin-bottom: 30px;
+}
+
+.register {
+
 }
 .login h3 {
 	text-align: center;

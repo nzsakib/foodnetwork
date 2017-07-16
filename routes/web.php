@@ -23,7 +23,7 @@ Route::get('profile/{id}/edit', 'ProfileController@getEditProfile');
 Route::post('profile/{id}/edit', 'ProfileController@postEditProfile');
 Route::post('profile', 'ProfileController@update_avatar');
 Route::post('comments', 'ProfileController@comment');
-
+Route::get('biz_photos/{id}', 'RestaurantController@photo');
 
 Route::get('recipe', 'RecipeController@index');
 Route::post('recipe', 'RecipeController@searchRecipe');
