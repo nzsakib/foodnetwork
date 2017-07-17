@@ -26,6 +26,7 @@
     {{-- <link href="{{ asset('css/style.css') }}" rel="stylesheet">  --}}
     <link href="{{ asset('css/food.css') }}" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/recipe.css') }}">
+    <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
 
 </head>
 
@@ -49,6 +50,7 @@
     <script src="{{ asset('js/foodpicky.min.js') }}"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgEKCmglHUF4eSSfD8jusFSxgFVjGnEPc&libraries=places&callback=initMap"></script>
     <script src="js/maps.js"></script>
+    <script src="{{ asset('js/lightbox-plus-jquery.js') }}"></script>
     <script src="{{ asset('js/food.js') }}"></script>
 </body>
 

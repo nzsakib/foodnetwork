@@ -39,7 +39,8 @@ class ProfileController extends Controller
             $imageNames = [];
             $dir = public_path('biz/images/' . request('place_id'));
             if(!File::exists($dir)) {
-                // path does not exist
+                //chown -R www-data:www-data /path/to/webserver/www
+                //chmod -R g+rw /path/to/webserver/www
                 //$old = umask(0);
                 $path = File::makeDirectory( $dir, 0775 );
                 //umask($old);

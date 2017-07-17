@@ -125,8 +125,12 @@
                             <div class="row comment-img">
                                 @foreach ($review->photo as $p)
                                     <div class="col-md-6">
-                                    
-                                        <img src="{{ url('biz/images/') . '/' . $review->place_id . '/'. $p->filename }}" alt="" class="img-responsive">
+                                        
+                            <a href="{{ url('biz/images/') . '/' . $review->place_id . '/'. $p->filename }}" 
+                                data-lightbox="image-{{ $review->id }}">
+                            <img src="{{ url('biz/images/') . '/' . $review->place_id . '/'. $p->filename }}" 
+                                alt="" class="img-responsive">
+                            </a>
                                     </div>
                                 @endforeach
                             </div>

@@ -45,3 +45,8 @@ $(".new-comment input[type=file]").on('change', function () {
          alert("Pls select only images");
      }
  });
+
+lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+})
