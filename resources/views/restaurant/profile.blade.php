@@ -5,6 +5,14 @@
 <section class="shop-profile">
     {{-- <div class="profile"> --}}
         <div class="container">
+                
+            @if(session()->has('notice'))
+                <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  {{ session()->get('notice') }}
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-xs-12 col-sm-12  col-md-6 col-lg-6">
                     <h2>{{ $shop->name }}</h2>
