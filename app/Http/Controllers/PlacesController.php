@@ -27,20 +27,34 @@ class PlacesController extends Controller
         // dd($data->results[0]);
         $place_id = $data->results[0]->place_id;
 		$location = $data->results[0]->geometry->location;
+
+        $next_page_token = request()->get('token');
+        
+        if($next_page_token) {
 		$url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" 
 				. $location->lat . "," 
 				. $location->lng . 
-				"&type=restaurant&rankby=distance&key=AIzaSyDfFt092pXHiO8JMivyLvj1DF7Y04Mndmo";
+				"&type=restaurant&rankby=distance&" . 
+                "pagetoken=" . $next_page_token . "&" . "key=" . env('MAP_API_KEY');
+            
+        } 
+        else {
+        $url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" 
+                . $location->lat . "," 
+                . $location->lng . 
+                "&type=restaurant&rankby=distance&key=" . env('MAP_API_KEY');    
+        }
 		
 		$response = $client->post($url);
 		$results = $response->getBody()->getContents();
 		// dd($results);
         $data = json_decode($results);
+        //dd($data); // send this data instead of restaurants
 		// dd($data->results);
 		$restaurants = $data->results;
         // dd($restaurants);
 
-		return view('restaurants', compact('restaurants', 'location', 'place_id', 'search'));
+		return view('restaurants', compact('data', 'location', 'place_id', 'search'));
     }
 
     /*

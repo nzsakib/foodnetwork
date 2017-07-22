@@ -21,7 +21,7 @@
               </div> <!-- end columns -->
 
 <div class="col-xs-12 col-sm-7 col-md-7 col-lg-9">
-  @foreach ($restaurants as $shop)
+  @foreach ($data->results as $shop)
 	
 	<div class="restaurant-entry">
 		<div class="row">
@@ -71,9 +71,22 @@
 @endforeach
          </div> <!-- end columns -->
       </div> <!-- end row -->
+
+      <nav aria-label="...">
+        <ul class="pager">
+
+          <li><a href="#">Previous</a></li>
+          @if(isset($data->next_page_token))
+            <li><a href="?token={{ $data->next_page_token }}">Next</a></li>
+          @else 
+            <li class="disabled"><a href="#">Next</a></li>
+          @endif
+        </ul>
+      </nav>
+
   </div> <!-- end container -->
             </section>
-    <section>
+
         <script type="text/javascript">
     function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
