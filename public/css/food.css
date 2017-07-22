@@ -1,6 +1,32 @@
 /* ==========================
 *  Comment/Review Box
 ============================*/
+.single-comment {
+	
+}
+
+.dropdown-position {
+
+}
+.comment-edit {
+	/*position: absolute;*/
+	float: right;
+	margin-right: 10px;
+	font-size: 20px;
+
+}
+
+.comment-edit a {
+	color: #666;
+
+}
+
+body {
+	padding-top: 50px !important;
+}
+/* ==========================
+*  Comment/Review Box
+============================*/
 /*Set icon to top right*/
 .comment-box {
 	position: relative;
@@ -347,4 +373,4 @@ span.timeline {
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 
 /* Body */
-body { padding-top: 70px; }
+/*body { padding-top: 70px; }*/

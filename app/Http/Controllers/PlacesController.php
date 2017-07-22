@@ -63,7 +63,8 @@ class PlacesController extends Controller
         //$dbReviews = Review::with('user')->where('place_id', $id)->latest()->get();
         $dbReviews = Review::with(['user', 'photo'])->where('reviews.place_id', $id)
                              ->latest()
-                             ->get();
+                            ->get()
+                             ;
         // $dbReviews = DB::table('reviews')
         //     ->where('reviews.place_id', $id)
         //     ->leftJoin('photos', 'reviews.id', '=', 'photos.review_id')
@@ -96,6 +97,6 @@ class PlacesController extends Controller
     	}
         $user = Auth::user();
     	// $shop->opening_hours->open_now = false;
-    	return view('profile', compact('shop', 'reviews', 'photos', 'user', 'dbReviews'));
+    	return view('restaurant.profile', compact('shop', 'reviews', 'photos', 'user', 'dbReviews'));
     }
 }

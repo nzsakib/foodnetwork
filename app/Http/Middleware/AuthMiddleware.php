@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use URL;
 
 class AuthMiddleware
 {
@@ -18,7 +19,9 @@ class AuthMiddleware
     {
         if(Auth::check())
             return $next($request);
-        else 
-            return redirect('auth/login');
+        else {
+            $redirect = parse_url(url()->current())['path'];
+            return redirect('auth/login' . '?r=' . $redirect);
+        }
     }
 }

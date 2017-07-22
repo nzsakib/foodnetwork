@@ -19,10 +19,15 @@ class ProfileController extends Controller
 	}
     public function profile($id)
     {
-        $user = User::findorFail($id);
+        if( !Auth::check() ) {
+            $user = User::findorFail($id);
+        }
+        else {
+            $user = Auth::user();
+        }
         // dd($user);
         // return view('account', ['user' => Auth::user()]);
-    	return view('account', ['user' => $user]);
+    	return view('user.profile.feed', ['user' => $user]);
     }
 
     public function comment()

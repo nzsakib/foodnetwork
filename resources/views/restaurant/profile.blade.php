@@ -110,14 +110,40 @@
             @foreach ($dbReviews as $review)
                 
                 <div class="row single-comment">
+                    
+                    <div class="comment-edit dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="/user_reviews/{{ $review->id }}/edit">
+                                <i class="fa fa-pencil" aria-hidden="true"></i> 
+                                Edit
+                            </a></li>
+                            <li><a href="/user_reviews/{{ $review->id }}/delete">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                Delete
+                            </a></li>
+                            <li><a href="/user_reviews/{{ $review->id }}/flag">
+                                <i class="fa fa-flag" aria-hidden="true"></i>
+                                Report
+                            </a></li>
+                        </ul>
+                    </div> <!-- dropdown end -->
+                
                     <div class="pro-image col-md-2">
+                        <h3><a href="/profile/{{ $review->user->id }}/">
+                            {{ $review->user->first_name }} {{ $review->user->last_name }}
+                        </a></h3>
                         <img src="{{ asset('uploads/avatars/' . $review->user->avatar) }}">
-                        @for ($i=0; $i < (int)$review->rating; $i++)
-                            <i class="fa fa-star"></i>
-                        @endfor
+                    
                     </div>
                     <div class="user-comments col-md-10">
-                        <h4><a href="/user/{{ $review->user->id }}">{{ $review->user->name }}</a></h4>
+                        <h4 class="user-rating">
+                       @for ($i=0; $i < (int)$review->rating; $i++)
+                           <i class="fa fa-star"></i>
+                       @endfor
+                       </h4>
                         <span class="timeline"> {{ $review->created_at->diffForHumans() }}</span>
                         <p>{!! nl2br($review->body) !!}</p>
 
@@ -135,6 +161,24 @@
                                 @endforeach
                             </div>
                         @endif
+
+                        <!-- user vote area -->
+                        <div class="row user-vote">
+                            <p>Was this review ... ?</p>
+                            <a href="#" class="btn btn-sm btn-default">
+                                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                                Useful 
+                            </a>
+                            <a href="#" class="btn btn-sm btn-default">
+                                <i class="fa fa-smile-o" aria-hidden="true"></i>
+                                Funny
+                            </a>
+                            <a href="#" class="btn btn-sm btn-default">
+                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                Cool
+                            </a>
+                        </div>
+                        <!-- end user vote area -->
                     </div> <!-- end user-comments -->
                 </div> <!-- end row, single comment -->
             @endforeach
@@ -165,7 +209,7 @@
             @endforeach
         @endif
         
-        {!! $dbReviews->links() !!}
+        {{-- {!! $dbReviews->links() !!} --}}
         </div> <!-- end review-box -->
                 <!-- Widget area -->
                 <div class="col-md-3 widget sidebar clearfix col-lg-3">

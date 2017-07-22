@@ -12,17 +12,23 @@ class AuthController extends Controller
     public function show()
     {
         // $refer = request('r');
-        $refer = parse_url(url()->previous())['path'];
+      // $sessionRedirect = session('redirect');
+       // dd($sessionRedirect);
+        // $refer = parse_url(url()->previous())['path'];
+        $refer = request()->get('r');
+        // dd($refer);
     	return view('auth.login', compact('refer'));
     }
 
     public function login()
     {
+        // dd(request('_refer'));
     	$this->validate(request(), [
     		'email'		=> 'required',
     		'password'	=> 'required'
     	]);
         $refer = request('_refer');
+
     	if( Auth::attempt(['email' => request('email'), 'password' => request('password')]) ) {
     		return $refer ? redirect($refer) : redirect('/');
     	} else {
