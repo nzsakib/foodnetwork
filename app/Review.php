@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    protected $fillable = ['user_id', 'body', 'rating', 'place_id'];
+    protected $fillable = ['user_id', 'body', 'rating', 'place_id', 'restaurant_id'];
 
     public function photo()
     {
@@ -15,6 +15,11 @@ class Review extends Model
     
     public function user()
     {
-    	return $this->belongsTo('App\User', 'user_id');
+    	return $this->belongsTo('App\User');
+    }
+
+    public function restaurant()
+    {
+    	return $this->belongsTo('App\Restaurant');
     }
 }

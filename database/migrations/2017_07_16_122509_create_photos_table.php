@@ -16,6 +16,7 @@ class CreatePhotosTable extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('place_id');
+            $table->integer('restaurant_id')->nullabel();
             $table->string('filename');
             $table->integer('review_id')->unsigned()->nullable();
             $table->timestamps();
@@ -35,6 +36,8 @@ class CreatePhotosTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints(); 
         Schema::dropIfExists('Photos');
+        Schema::enableForeignKeyConstraints();
     }
 }

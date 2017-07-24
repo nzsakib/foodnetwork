@@ -19,6 +19,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
+            $table->string('location')->nullable();
             $table->integer('claimed')->nullable();
             $table->string('website')->nullable();
             $table->string('category')->nullable();
@@ -33,6 +34,7 @@ class CreateRestaurantsTable extends Migration
      */
     public function down()
     {
+        // Schema::truncate();
         Schema::dropIfExists('restaurants');
     }
 }

@@ -29,6 +29,7 @@ Route::get('recipe', 'RecipeController@index');
 Route::post('recipe', 'RecipeController@searchRecipe');
 Route::get('recipe/{id}', 'RecipeController@getRecipe');
 
+Route::get('restaurant/{$place_id}/review/create', 'ReviewsController@store');
 Route::get('user_reviews/{id}/delete', 'ReviewsController@delete')->middleware('user');
 Route::get('user_reviews/{id}/edit', 'ReviewsController@edit')->middleware('user');
 Route::get('user_reviews/{id}/report', 'ReviewsController@report');

@@ -62,12 +62,13 @@ class PlacesController extends Controller
      */
     public function details($id)
     {
-    	$url = "https://maps.googleapis.com/maps/api/place/details/json?placeid={$id}&key=AIzaSyDfFt092pXHiO8JMivyLvj1DF7Y04Mndmo";
+    	$url = "https://maps.googleapis.com/maps/api/place/details/json?placeid={$id}&key=" . env('MAP_API_KEY');
 
     	$client = new Client();
     	$response = $client->post($url);
     	$results = $response->getBody()->getContents();
     	$data = json_decode($results);
+        // dd($data);
     	$shop = $data->result;
     	// dd($shop);
     	$reviews = (isset($shop->reviews)) ? $shop->reviews : false;

@@ -18,13 +18,18 @@ class CreateReviewsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->text('body');
             $table->integer('rating');
-            $table->string('place_id', 400);
+            $table->string('place_id')->nullable();
+            $table->integer('restaurant_id');
             $table->timestamps();
 
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
                     ->onDelete('cascade');
+
+            // $table->foreign('place_id')
+            //         ->references('place_id')
+            //         ->on('restaurants');
             
         });
     }
@@ -36,6 +41,8 @@ class CreateReviewsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints(); 
         Schema::dropIfExists('reviews');
+        Schema::enableForeignKeyConstraints(); 
     }
 }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 use App\Photo;
 use App\Review;
 use App\User;
+use App\Restaurant;
 use Auth;
 use Image;
 use File;
@@ -37,6 +39,13 @@ class ProfileController extends Controller
     		'body' => 'required',
     		'place_id' => 'required'
     	]);
+
+        $r = Restaurant::where('place_id', request('place_id'))->first();
+        
+        if( !$r )
+            $r = $this->saveRestaurant(request('place_id'));
+        
+
         // dd(request(['user_id', 'body', 'rating', 'place_id']));
         if(request()->hasFile('review-image'))
         {
@@ -64,6 +73,7 @@ class ProfileController extends Controller
         {
             $data = request(['user_id', 'body', 'rating', 'place_id']);
             $data['photo'] = 1;
+            $data['restaurant_id'] = $r->id;
             $review = Review::create($data);
             foreach ($imageNames as $image) 
             {
@@ -77,7 +87,10 @@ class ProfileController extends Controller
             }   
         }
         else {
-    	   Review::create(request(['user_id', 'body', 'rating', 'place_id'])); 
+            $data = request(['user_id', 'body', 'rating', 'place_id']);
+            $data['photo'] = 0;
+            $data['restaurant_id'] = $r->id;
+            Review::create($data);
         }
         // dd(request(['user_id', 'body', 'rating', 'place_id']));
 
@@ -110,5 +123,32 @@ class ProfileController extends Controller
     public function postEditProfile($id)
     {
         dd($id);
+    }
+
+    public function saveRestaurant($placeid)
+    {
+        $url = "https://maps.googleapis.com/maps/api/place/details/json?placeid={$placeid}&key=AIzaSyDfFt092pXHiO8JMivyLvj1DF7Y04Mndmo";
+
+        $client = new Client();
+        $response = $client->post($url);
+        $results = $response->getBody()->getContents();
+        $data = json_decode($results);
+        $shop = $data->result;
+
+        $res = new Restaurant;
+        $res->name = $shop->name;
+        $res->place_id = $shop->place_id;
+        if(isset($shop->formatted_phone_number)) $res->phone = $shop->formatted_phone_number;
+        if(isset($shop->formatted_address)) $res->address = $shop->formatted_address; 
+        $res->claimed = 0;
+        if(isset($shop->website)) $res->website = $shop->website;
+
+        $loc[] = $shop->geometry->location->lat;  
+        $loc[] = $shop->geometry->location->lng;
+        $location = implode('|', $loc);
+
+        $res->location = $location;
+        $res->save(); 
+        return $res;
     }
 }

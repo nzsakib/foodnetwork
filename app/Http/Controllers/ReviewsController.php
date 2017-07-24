@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Review;
+use App\Restaurant;
 use Auth;
 
 class ReviewsController extends Controller
@@ -22,15 +23,25 @@ class ReviewsController extends Controller
 
     public function edit($id)
     {
-    	$review = Review::find($id);
+    	$review = Review::with('restaurant')->find($id);
     	if($review->user_id != Auth::id() )
     		return redirect('restaurant/' . $review->place_id);
-    	dd($review);
-    	return view('reviews.edit', compact('review'));
+    	
+    	$moreReviews = Review::with('user')->where([
+    			['id', '!=', $review->id],
+    			['restaurant_id', '=', $review->restaurant_id] ])
+				->latest()->take(5)->get();
+    	// dd($moreReviews);
+    	return view('reviews.edit', compact('review', 'moreReviews'));
     }
 
     public function update()
     {
     		
+    }
+
+    public function test(Review $review, Restaurant $restaurant, $place_id, $review_id)
+    {
+		dd($review);    	
     }
 }
