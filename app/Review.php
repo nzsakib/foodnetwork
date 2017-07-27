@@ -22,4 +22,11 @@ class Review extends Model
     {
     	return $this->belongsTo('App\Restaurant');
     }
+
+    public function reaction()
+    {
+        return $this->belongsToMany('App\Reaction', 'reactables')
+                    ->withPivot('user_id')
+                    ->withTimestamps();
+    }
 }

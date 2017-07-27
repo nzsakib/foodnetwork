@@ -32,8 +32,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Review');
     }
 
-    public function getFullNameAttribute()
+    public function getNameAttribute()
     {
         return $this->first_name . " " . $this->last_name;
     }
+
 }

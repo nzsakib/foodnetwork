@@ -1,4 +1,57 @@
 /* ==========================
+*  Recipe search page
+============================*/
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+.recipe-container {
+	font-family: 'Raleway', sans-serif;
+	background: #e0f7fa;
+	min-height: 600px;
+}
+.recipe {	
+	width: 600px;
+	margin: 100px auto;
+}
+.recipe h1 {
+	margin-bottom: 50px;
+	text-align: center;
+	font-weight: bold;
+	-moz-animation-duration: 3s;	
+}
+
+.recipe .ingredients ul {
+	margin: 0;
+	padding: 0;
+}
+
+.recipe span.delete {
+	font-size: 20px;
+	cursor: pointer;
+	display: inline-block;
+	margin-left: 10px;
+	transition: all .3s;
+}
+
+.recipe span.delete:hover {
+	-moz-transform: scale(1.2);
+}
+
+.ingredients ul li {
+	list-style: none;
+	border: 1px solid #ff4081;
+	display: inline-block;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 4px;
+	min-width: 300px,
+}
+
+.recipe-result {
+	margin-bottom: 10px;
+	padding: 10px;
+	border-bottom: 1px solid #42a5f5;
+}
+
+/* ==========================
 *  Comment/Review Box
 ============================*/
 .single-comment {

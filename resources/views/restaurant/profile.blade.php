@@ -30,9 +30,7 @@
                         @endfor
                     @endif
                     <div class="category">
-                        @foreach ($shop->types as $cat)
-                            {{ $cat }} ,
-                        @endforeach
+                        Implement category
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 profile-desc">
@@ -124,6 +122,7 @@
                             <i class="fa fa-angle-down" aria-hidden="true"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right">
+                        @if($review->user->id == Auth::id())
                             <li><a href="/user_reviews/{{ $review->id }}/edit">
                                 <i class="fa fa-pencil" aria-hidden="true"></i> 
                                 Edit
@@ -132,6 +131,8 @@
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 Delete
                             </a></li>
+                        @endif
+                        
                             <li><a href="/user_reviews/{{ $review->id }}/flag">
                                 <i class="fa fa-flag" aria-hidden="true"></i>
                                 Report
@@ -173,15 +174,15 @@
                         <!-- user vote area -->
                         <div class="row user-vote">
                             <p>Was this review ... ?</p>
-                            <a href="#" class="btn btn-sm btn-default">
+                            <a href="/user_reviews/{{ $review->id }}/react/useful" class="btn btn-sm btn-default">
                                 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                                 Useful 
                             </a>
-                            <a href="#" class="btn btn-sm btn-default">
+                            <a href="/user_reviews/{{ $review->id }}/react/funny" class="btn btn-sm btn-default">
                                 <i class="fa fa-smile-o" aria-hidden="true"></i>
                                 Funny
                             </a>
-                            <a href="#" class="btn btn-sm btn-default">
+                            <a href="/user_reviews/{{ $review->id }}/react/cool" class="btn btn-sm btn-default">
                                 <i class="fa fa-heart-o" aria-hidden="true"></i>
                                 Cool
                             </a>

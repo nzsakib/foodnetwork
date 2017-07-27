@@ -14,7 +14,13 @@ class RecipeController extends Controller
 
     public function searchRecipe()
     {
-    	$ingred = request('ingred');
+        // dd(request());
+        $this->validate(request(), [
+            'ingred'    => 'required'
+        ]);
+        $ingred = implode( ',', request('ingred') );
+        // dd($ingred);
+    	// $ingred = request('ingred');
     	$client = new Client([ 
     		"headers" => [ 
     			"X-Mashape-Key" => "hpD9lWQOnJmshoD9J6UKJAL5HbaMp1ugmN4jsnDvCduTTWBEd2",
@@ -59,7 +65,7 @@ class RecipeController extends Controller
     	$similar = json_decode($results);
 
     	// dd($similar);
-    	// dd($recipe);
+    	dd($recipe);
     	
     	$steps = $recipe->analyzedInstructions[0]->steps;
     	return view('recipe.show', compact('recipe', 'steps', 'similar'));

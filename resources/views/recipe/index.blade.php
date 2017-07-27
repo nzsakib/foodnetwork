@@ -1,18 +1,32 @@
 @extends('master')
 
 @section('content')
-	
+<div class="recipe-container">
 	<div class="container">
-		<h1>What's on Your Fridge ?</h1>
-		<form class="form" action="{{ url('recipe') }}" method="post">
-			<div class="form-group">
-				<label for="ingred">Ingredients : </label>
-				<input type="text" name="ingred" class="form-control"
-					placeholder="Comma separated ingredients.....">
+		<div class="recipe">
+			
+			<h1 class="animated infinite pulse">What's on <span>Your Fridge ?</span></h1>
+			<div class="ingredients">
+				<form action="{{ url('recipe') }}" method="POST">
+					{{ csrf_field() }}
+						
+				</form>
+				<ul>
+					{{-- <li>One RRRRRRRRR <span class="delete"><i class="fa fa-times-circle-o" aria-hidden="true"></i></span> </li>
+					<li>Two <span class="delete"><i class="fa fa-times-circle-o" aria-hidden="true"></i></span> </li>
+					<li>three <span class="delete"><i class="fa fa-times-circle-o" aria-hidden="true"></i></span> </li> --}}
+				</ul>
 			</div>
-			{{ csrf_field() }}
-			<button class="btn btn-primary">Get Recipe</button>
-		</form>
+			<form class="form" action="{{ url('recipe') }}" method="post">
+				<div class="form-group">
+					<label for="ingred">Ingredients : </label>
+					<input type="text" name="ingred" class="form-control"
+						placeholder="Type ingredients....." autocomplete="off">
+				</div>
+				{{ csrf_field() }}
+				<button class="btn btn-primary submit-recipe">Get Recipe</button>
+			</form>
+		</div>
 		@if(isset($ingred))
 			<h3>Your ingredients are: <strong><em>{{ $ingred }}</em></strong></h3>
 		@endif
@@ -46,6 +60,6 @@
 			</div>
 		@endif
 	</div>
-
+</div>
 
 @endsection

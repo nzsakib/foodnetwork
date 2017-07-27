@@ -6,7 +6,8 @@
 			 <div class="row">
 			 	<div class="col-md-9">
 			 		<img src="{{ asset('uploads/avatars/' . $user->avatar)  }}" class="profile-pic">
-			 		<h1>{{ $user->first_name }} {{ $user->last_name }}</h1>
+			 		<h1>{{ $user->name }}</h1>
+			 	
 			 		@if($user->location)
 			 			<h4>{{ $user->location }}</h4>
 			 		@else 

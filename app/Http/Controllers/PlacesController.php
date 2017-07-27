@@ -80,6 +80,7 @@ class PlacesController extends Controller
                              ->latest()
                             ->get()
                              ;
+        // dd($dbReviews);
         // $dbReviews = DB::table('reviews')
         //     ->where('reviews.place_id', $id)
         //     ->leftJoin('photos', 'reviews.id', '=', 'photos.review_id')
@@ -95,6 +96,7 @@ class PlacesController extends Controller
     	// loop through photos and get reference
     		foreach ($shop->photos as $photo) {
     			$call = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=240&maxheight=140&photoreference={$photo->photo_reference}&key=" . env("MAP_API_KEY");
+                // dd($call);
     	// API call to maps to get redirected links
 		    	$response = $client->get($call, [
 				    // 'query'   => ['get' => 'params'],
@@ -102,6 +104,7 @@ class PlacesController extends Controller
 				        $url = $stats->getEffectiveUri();
 				    }
 				]);
+                // dd($response);
     	// push the link to photos array
     			$photos[] = "" . $url->getScheme() . "://" . $url->getHost() . $url->getPath();
     			break;
@@ -110,6 +113,7 @@ class PlacesController extends Controller
     		// No photos for the shop
     		$photos = false;
     	}
+
         $user = Auth::user();
     	// $shop->opening_hours->open_now = false;
     	return view('restaurant.profile', compact('shop', 'reviews', 'photos', 'user', 'dbReviews'));

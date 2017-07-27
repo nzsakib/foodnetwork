@@ -22,6 +22,9 @@
     <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
 
+    <!-- css animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
     <!-- Custom styles for this template -->
     {{-- <link href="{{ asset('css/style.css') }}" rel="stylesheet">  --}}
     <link href="{{ asset('css/food.css') }}" rel="stylesheet"> 
@@ -41,16 +44,17 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/tether.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/tether.min.js') }}"></script> --}}
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/animsition.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/animsition.min.js') }}"></script> --}}
     <script src="{{ asset('js/bootstrap-slider.min.js') }}"></script>
     <script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
-    <script src="{{ asset('js/headroom.js') }}"></script>
-    <script src="{{ asset('js/foodpicky.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/headroom.js') }}"></script> --}}
+    {{-- <script src="{{ asset('js/foodpicky.min.js') }}"></script> --}}
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgEKCmglHUF4eSSfD8jusFSxgFVjGnEPc&libraries=places&callback=initMap"></script>
     <script src="js/maps.js"></script>
     <script src="{{ asset('js/lightbox-plus-jquery.js') }}"></script>
+    <script src="{{ asset('js/typed.js') }}"></script>
     <script src="{{ asset('js/food.js') }}"></script>
 </body>
 

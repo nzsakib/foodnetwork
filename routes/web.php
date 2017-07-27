@@ -34,3 +34,9 @@ Route::get('user_reviews/{id}/delete', 'ReviewsController@delete')->middleware('
 Route::get('user_reviews/{id}/edit', 'ReviewsController@edit')->middleware('user');
 Route::get('user_reviews/{id}/report', 'ReviewsController@report');
 
+Route::get('user_reviews/{id}/react/useful', 'ReactionsController@useful');
+Route::get('user_reviews/{id}/react/funny', 'ReactionsController@funny');
+Route::get('user_reviews/{id}/react/cool', 'ReactionsController@cool');
+
+// (select name,count(*) as count from reactables join reactions on reaction_id = reactions.id 
+// where review_id = 7 group by name);

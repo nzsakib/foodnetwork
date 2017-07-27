@@ -50,3 +50,44 @@ lightbox.option({
       'resizeDuration': 200,
       'wrapAround': true
 })
+
+
+// $('.ingredients ul li span.delete').on('click', function(){
+//     $this = $(this);
+//     var toRemove = $this.parent().text();
+//     $this.parent().fadeOut().remove();
+//     var toFind = "input[value='" + toRemove + "']";
+//     $(toFind).remove();
+//     console.log("Removed : " + toFind);
+// });
+
+$("input[name=ingred]").on('keydown', function(e) {
+    if(e.keyCode == 13) {
+        e.preventDefault();
+        var value = $(this).val();
+        $(this).val('');
+        $(".ingredients form").append("<input type=\"hidden\" name=\"ingred[]\" value='"+value+"'</>");
+        var newli = $(".ingredients ul").append("<li>" + value + " <span class=\"delete\"><i class=\"fa fa-times-circle-o\" aria-hidden=\"true\"></i></span></li>").children(':last').hide().fadeIn(1000);
+        console.log(newli.html());
+        // newli = newli.children('li').last().children('span.delete');
+        newli.click(removeElement);
+    }
+});
+
+function removeElement(e) {
+    $this = $(this);
+    console.log($this.text());
+    var toRemove = $this.text();
+    toRemove = toRemove.trim();
+    $this.fadeOut(function() {
+        $(this).remove();
+    });
+    var toFind = "input[value='" + toRemove + "']";
+    $(toFind).remove();
+    console.log("Removed : " + toFind);
+}
+
+$('button.submit-recipe').click(function(e) {
+    e.preventDefault();
+    $(".ingredients form").submit();
+});
