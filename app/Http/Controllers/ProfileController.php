@@ -70,9 +70,12 @@ class ProfileController extends Controller
         if(isset($imageNames)) 
         {
             $data = request(['user_id', 'body', 'rating', 'place_id']);
-            $data['photo'] = 1;
+            //$data['photo'] = 1;
+            // $data['rating'] = (int) request('rating');
             $data['restaurant_id'] = $r->id;
+            // dd($data);
             $review = Review::create($data);
+
             foreach ($imageNames as $image) 
             {
                 // save to db 
@@ -80,13 +83,14 @@ class ProfileController extends Controller
                 $photo = new Photo();
                 $photo->place_id = request('place_id');
                 $photo->filename = $image;
+                $photo->restaurant_id = $r->id;
                 $photo->review_id = $review->id;
                 $photo->save();
             }   
         }
         else {
             $data = request(['user_id', 'body', 'rating', 'place_id']);
-            $data['photo'] = 0;
+            // $data['photo'] = 0;
             $data['restaurant_id'] = $r->id;
             Review::create($data);
         }

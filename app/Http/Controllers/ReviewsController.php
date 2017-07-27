@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Review;
 use App\Restaurant;
+use App\Report;
+use Carbon\Carbon;
 use Auth;
+use DB;
 
 class ReviewsController extends Controller
 {
@@ -40,8 +43,57 @@ class ReviewsController extends Controller
     		
     }
 
-    public function test(Review $review, Restaurant $restaurant, $place_id, $review_id)
+    public function report($id)
     {
-		dd($review);    	
+        $review = Review::find($id);
+        if(Auth::check()) {
+            $userId = Auth::id();
+            $ip = request()->ip();
+
+            $report = Report::where([
+                ['user_id', '=', $userId],
+                ['review_id', '=', $id]])->first();
+
+                // dd($report);
+            if(count($report) == 0) {
+                DB::table('reports')->insert(
+                    [
+                        'user_id'   => $userId,
+                        'ip'        => DB::raw("INET_ATON('$ip')"),
+                        'review_id' => (int)$id,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now()
+                    ]
+                );
+                // Report::create([
+                //     'user_id'   => $userId,
+                //     'ip'        => $ip,
+                //     'review_id' => (int)$id
+                // ]);
+                return redirect()->back()->with('notice', 'Thanks for reporting. We will soon take necessary action. Thanks');
+            }
+            else {
+                return redirect()->back()->with('notice', 'You already reported this before. We will soon take necessary action. Thanks. ');
+            }
+        }
+        else {
+            // user is not logged in , Get the ip
+            $ip = request()->ip();
+            $report = Report::where([
+                ['ip', '=', DB::raw("INET_ATON('$ip')")],
+                ['review_id', '=', $id]])->first();
+// dd(!$report);
+            if(!$report) {
+                Report::create([
+                    'ip'   => DB::raw("INET_ATON('$ip')"),
+                    'review_id' => (int)$id
+                ]);
+                return redirect()->back()->with('notice', 'Thanks for reporting. We will soon take necessary action. Thanks');
+            }
+            else {
+                return redirect()->back()->with('notice', 'You previously reported this before. We will soon take necessary action. Thanks. ');
+            }
+        }
+        return redirect()->back()->with('notice', 'Successfully Reported.');
     }
 }

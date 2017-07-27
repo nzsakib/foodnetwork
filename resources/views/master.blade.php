@@ -45,7 +45,7 @@
     ================================================== -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     {{-- <script src="{{ asset('js/tether.min.js') }}"></script> --}}
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-3.min.js') }}"></script>
     {{-- <script src="{{ asset('js/animsition.min.js') }}"></script> --}}
     <script src="{{ asset('js/bootstrap-slider.min.js') }}"></script>
     <script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
@@ -54,7 +54,7 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgEKCmglHUF4eSSfD8jusFSxgFVjGnEPc&libraries=places&callback=initMap"></script>
     <script src="js/maps.js"></script>
     <script src="{{ asset('js/lightbox-plus-jquery.js') }}"></script>
-    <script src="{{ asset('js/typed.js') }}"></script>
+   
     <script src="{{ asset('js/food.js') }}"></script>
 </body>
 
