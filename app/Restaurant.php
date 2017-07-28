@@ -10,4 +10,9 @@ class Restaurant extends Model
     {
     	return $this->hasMany('App\Review');
     }
+
+    public function bookmarks()
+    {
+    	return $this->hasMany('App\Bookmark');
+    }
 }

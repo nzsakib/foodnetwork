@@ -63,9 +63,7 @@
 					<div class="form-group">
 						<label class="col-md-3 control-label">Your Biography: </label>
 						<div class="col-md-9">
-							<textarea class="form-control" placeholder="Tell something about yourself" name="bio">
-								
-							</textarea>
+							<textarea class="form-control" placeholder="Tell something about yourself" name="bio"></textarea>
 						</div>
 					</div>
 					<div class="form-group">

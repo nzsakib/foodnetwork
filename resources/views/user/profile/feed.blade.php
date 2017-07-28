@@ -2,18 +2,18 @@
 
 @section('onFeed')
 		
-	<div class="container">
-		<div class="row user-self-reviews">
-			<div class="col-md-9">
+	
+			
+			<div class="col-md-6">
 			@foreach ($user->reviews as $review)
 				
 			
 				<div class="usr-self-single-review">
 					<div class="restaurant row">
-						<div class="col-md-1">	
+						<div class="col-md-2">	
 							<img src="http://placehold.it/50x50">
 						</div>
-						<div class="col-md-11 desc">	
+						<div class="col-md-10 desc">	
 							<h5><a href="/restaurant/{{ $review->restaurant->place_id }}">{{ $review->restaurant->name }}</a></h5>
 							<div class="cat">
 								<a href="#">Thai</a>
@@ -77,8 +77,7 @@
 
 				
 			</div>
-		</div>
-	</div>
+		
 
 
 @stop

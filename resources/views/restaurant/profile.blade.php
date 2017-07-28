@@ -39,7 +39,7 @@
                    <div class="btn-group" role="group" aria-label="...">
                      <a type="button" href="/upload" class="btn btn-default"><i class="fa fa-camera" aria-hidden="true"></i> Add Photo</a>
                      <a type="button" href="/share" class="btn btn-default"><i class="fa fa-share-square-o" aria-hidden="true"></i> Share</a>
-                     <a type="button" href="/bookmark" class="btn btn-default"> <i class="fa fa-bookmark" aria-hidden="true"></i>Bookmark</a>
+                     <a type="button" href="/restaurant/{{ $shop->place_id }}/bookmark" class="btn btn-default"> <i class="fa fa-bookmark" aria-hidden="true"></i>Bookmark</a>
                    </div>
 
                 </div> <!-- end column --> 

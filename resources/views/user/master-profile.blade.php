@@ -47,7 +47,7 @@
 	<!-- container -->
 		</div> 
 		<!-- user-header -->
-	<div class="container">
+	{{-- <div class="container">
 		<div class="row">
 			<ul class="tabs clearfix">
 				<li><a href="#">Profile Overview</a></li>
@@ -58,9 +58,66 @@
 				<li><a href="/profile/{{ $user->id }}/recipe">Recipe</a></li>
 			</ul>
 		</div> <!-- row -->
-	</div>
+	</div> --}}
 
-	@yield('onFeed')
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 sidebar">
+			<ul class="settings">
+				<li>
+					<a href="/profile/{{ $user->id }}">
+					<i class="fa fa-user" aria-hidden="true"></i>
+						Profile Overview
+					</a>
+				</li>
+				<li>
+					<a href="/profile/{{ $user->id }}/friends">
+						<span class="icon-left">
+							<i class="fa fa-users" aria-hidden="true"></i>
+						</span>
+						Friends
+					</a>
+				</li>
+				<li>
+					<a href="/profile/{{ $user->id }}/reviews">
+					<span class="icon-left">
+						<i class="fa fa-star" aria-hidden="true"></i>
+					</span>
+						Reviews
+					</a>
+				</li>
+				<li>
+					<a href="/profile/{{ $user->id }}/photos">
+						<span class="icon-left">
+							<i class="fa fa-camera" aria-hidden="true"></i>
+						</span>
+						Business Photos
+					</a>
+				</li>
+				<li>
+					<a href="/profile/{{ $user->id }}/bookmarks">
+						<span class="icon-left">
+							<i class="fa fa-bookmark" aria-hidden="true"></i>
+						</span>
+						Bookmarks
+					</a>
+				</li>
+				<li>
+					<a href="/profile/{{ $user->id }}/recipe">
+						<span class="icon-left">
+							<i class="fa fa-spoon" aria-hidden="true"></i>
+						</span>
+						Recipe
+					</a>
+				</li>
+			</ul>
+		</div> <!-- end col-md-3 and sidebar -->
+
+		@yield('onFeed')
+		
+	</div> <!-- end row -->
+</div> <!-- end container -->
+
 
 
 @stop

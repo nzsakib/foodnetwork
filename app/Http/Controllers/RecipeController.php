@@ -65,7 +65,7 @@ class RecipeController extends Controller
     	$similar = json_decode($results);
 
     	// dd($similar);
-    	dd($recipe);
+    	dd($recipe->nutrition->nutrients->pluck('percentOfDailyNeeds'));
     	
     	$steps = $recipe->analyzedInstructions[0]->steps;
     	return view('recipe.show', compact('recipe', 'steps', 'similar'));

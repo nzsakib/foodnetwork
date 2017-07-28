@@ -20,8 +20,9 @@ Route::get('logout', 'AuthController@logout');
 Route::get('user/{id}', 'ProfileController@profile');
 Route::get('profile/{id}', 'ProfileController@profile');
 Route::get('profile/{id}/reviews', 'ProfileController@reviews');
-Route::get('profile/{id}/photos', 'ProfileController@photos')
-;
+Route::get('profile/{id}/photos', 'ProfileController@photos');
+Route::get('profile/{id}/bookmarks', 'ProfileController@bookmarks');
+
 Route::get('profile/{id}/edit', 'ProfileController@getEditProfile');
 Route::post('profile/{id}/edit', 'ProfileController@postEditProfile');
 Route::post('profile', 'ProfileController@update_avatar');
@@ -45,3 +46,5 @@ Route::get('user_reviews/{id}/react/cool', 'ReactionsController@cool');
 // where review_id = 7 group by name);
 
 Route::get('admin/dashboard', 'AdminController@dashboard');
+
+Route::get('restaurant/{place_id}/bookmark', 'PlacesController@bookmark');

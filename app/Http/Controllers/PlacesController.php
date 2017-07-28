@@ -8,6 +8,8 @@ use GuzzleHttp\TransferStats;
 use App\Review;
 use Auth;
 use DB;
+use App\Restaurant;
+use App\Bookmark;
 
 class PlacesController extends Controller
 {
@@ -117,5 +119,30 @@ class PlacesController extends Controller
         $user = Auth::user();
     	// $shop->opening_hours->open_now = false;
     	return view('restaurant.profile', compact('shop', 'reviews', 'photos', 'user', 'dbReviews'));
+    }
+
+    public function bookmark($place_id, \App\Maps $maps)
+    {
+        if(!Auth::check()) {
+            return redirect()->back();
+        }
+
+        $restaurant = Restaurant::where('place_id', '=', $place_id)->first();
+        if(!$restaurant) {
+            $restaurant = $maps->saveRestaurant($place_id);
+        }
+
+        $existing = Bookmark::where('restaurant_id', '=', $restaurant->id)->first();
+        if($existing)
+            return redirect()->back()->with('notice', 'You have bookmarked this restaurant before.');
+        
+        $data = [
+            'user_id'   => Auth::id(),
+            'place_id'  => $place_id,
+            'restaurant_id' => $restaurant->id
+        ];
+        Bookmark::create($data);
+
+        return redirect()->back();
     }
 }

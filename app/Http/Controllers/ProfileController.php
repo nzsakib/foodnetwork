@@ -8,6 +8,7 @@ use App\Photo;
 use App\Review;
 use App\User;
 use App\Restaurant;
+use App\Bookmark;
 use Auth;
 use Image;
 use DB;
@@ -91,11 +92,12 @@ class ProfileController extends Controller
             foreach ($imageNames as $image) 
             {
                 // save to db 
-                // place id, filename, review id
+                
                 $photo = new Photo();
                 $photo->place_id = request('place_id');
                 $photo->filename = $image;
                 $photo->restaurant_id = $r->id;
+                $photo->user_id = Auth::id();
                 $photo->review_id = $review->id;
                 $photo->save();
             }   
@@ -141,14 +143,28 @@ class ProfileController extends Controller
 
     public function reviews($id)
     {
-        $user = User::with([
-                'reviews' => function($query) {
-                    $query->paginate(10);
-                }
-            ])->findOrFail($id);
-        // dd($user);
+        $user = User::findorFail($id);
+        $reviews = $user->reviews()->paginate(10);
 
-        return view('user.profile.reviews', compact('user'));
+        return view('user.profile.reviews', compact('user', 'reviews'));
+    }
+
+    public function photos($id)
+    {
+        $user = User::findorFail($id);
+
+        $photos = Photo::where('user_id', '=', $id)->paginate(20);
+        // dd($photos);
+        return view('user.profile.photos', compact('user', 'photos'));
+    }
+
+    public function bookmarks($id)
+    {
+        $user = User::findorFail($id);
+
+        $bookmarks = Bookmark::with('restaurant')->where('user_id', '=', $id)->paginate(20);
+        // dd($bookmarks);
+        return view('user.profile.bookmark', compact('user', 'bookmarks'));
     }
 
     public function saveRestaurant($placeid)
