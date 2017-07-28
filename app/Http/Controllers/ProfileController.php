@@ -10,6 +10,7 @@ use App\User;
 use App\Restaurant;
 use Auth;
 use Image;
+use DB;
 use File;
 use Storage;
 
@@ -22,12 +23,23 @@ class ProfileController extends Controller
     public function profile($id)
     {
         
-        $user = User::findorFail($id);
+        $ratingCount = DB::table("reviews")
+                ->select(DB::raw("count(rating) as total"), "rating")
+                ->where("user_id", "=", $id)
+                ->groupBy("rating")->get();
         
-        
+        $user = User::with([
+                    'reviews.restaurant', 
+                    'reviews.photo',
+                    'reviews' => function($query) {
+                        $query->limit(10);
+                    }])
+                    ->findorFail($id);
+        // dd($user->created_at->format("F Y"));
+        //$user->reviews;
         // dd($user);
         // return view('account', ['user' => Auth::user()]);
-    	return view('user.profile.feed', ['user' => $user]);
+    	return view('user.profile.feed', compact('user', 'ratingCount'));
     }
 
     public function comment()
@@ -125,6 +137,18 @@ class ProfileController extends Controller
     public function postEditProfile($id)
     {
         dd($id);
+    }
+
+    public function reviews($id)
+    {
+        $user = User::with([
+                'reviews' => function($query) {
+                    $query->paginate(10);
+                }
+            ])->findOrFail($id);
+        // dd($user);
+
+        return view('user.profile.reviews', compact('user'));
     }
 
     public function saveRestaurant($placeid)

@@ -1,4 +1,68 @@
 /* ==========================
+*  Profile edit
+============================*/
+.sidebar .card img {
+	border-radius: 50%;
+	width: 80px;
+	height: 80px;
+	margin: auto;
+	position: absolute;
+	left: 90px;
+	top: 10px;
+} 
+
+.card .img-container {
+	position: relative;
+	background: #00bfa5;
+	height: 100px;
+	margin-top: 10px;
+}
+
+.card .user-desc h3 {
+	margin-top: 10px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.card .location {
+	font-size: 13px;
+	color: #757575;
+}
+
+.sidebar .card {
+	text-align: center;
+	/*background: #666;*/
+}
+
+.sidebar ul.settings {
+	margin: 0;
+	padding: 0;
+}
+
+ul.settings li {
+	list-style: none;
+}
+
+ul.settings a {
+	display: block;
+	padding: 10px 10px 10px 20px;
+	color: #616161;
+	background: #fff;
+	text-decoration: none;
+	transition: all .1s;
+	border-bottom: 1px solid #e3e3e3;
+}
+
+ul.settings a:hover {
+	background: #eeeeee;
+	color: #00bfa5;
+}
+
+.settings .icon-right {
+	float: right;
+}
+
+/* ==========================
 *  Recipe search page
 ============================*/
 @import url('https://fonts.googleapis.com/css?family=Raleway');
