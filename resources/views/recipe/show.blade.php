@@ -36,14 +36,18 @@
   <!-- Tab panes -->
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="instruction">
-	<ul>
-		@foreach ($steps as $step)
-				<li>
-					<strong>Step: </strong>{{ $step->number }}
-					<p>{{ $step->step }}</p>
-				</li>
-		@endforeach
-	</ul>
+  	@if($steps)
+		<ul>
+			@foreach ($steps as $step)
+					<li>
+						<strong>Step: </strong>{{ $step->number }}
+						<p>{{ $step->step }}</p>
+					</li>
+			@endforeach
+		</ul>
+	@else
+		<h3><a href="{{ $recipe->sourceUrl }}" target="__blank">CLick here for step by step instructions</a></h3>
+  	@endif
   </div>
   <div role="tabpanel" class="tab-pane" id="ingredients">
   	@foreach ($recipe->extendedIngredients as $item)
@@ -63,7 +67,7 @@
   	@endforeach
   </div>
   <div role="tabpanel" class="tab-pane" id="nutrition">
-  	Nutritions
+  	<canvas id="graph" width="100%" height="200"></canvas>
   </div>
 </div> <!-- Tab panes end -->
 </div>
@@ -90,4 +94,55 @@
 		</div>
 		<!-- end row -->
 	</div>
+@endsection
+
+@section('js')
+	<script>
+		var titles = {!! json_encode($titles) !!};
+		var needs = {!! json_encode($needs) !!};
+		
+		var l = needs.length;
+		var bgColors = [];
+		var lineColors = [];
+		for(var i = 0; i< l; i++) {
+			bgColors.push('rgba(26, 223, 223, 0.5)');
+		}
+		for(var i = 0; i< l; i++) {
+			lineColors.push('rgba(26, 223, 223, 1)');
+		}
+		var data = {
+			labels: titles,
+			datasets: [
+			{
+				label: "Percentage",
+				backgroundColor: bgColors,
+		      borderColor: lineColors,
+		      borderWidth: 1,
+				data: needs
+			}
+			]
+		};
+		var ctx = document.querySelector("#graph").getContext('2d');
+		new Chart(ctx, {
+		  type: 'horizontalBar',
+		  data: data,
+		  options: {
+		          scales: {
+		              
+		              xAxes: [{
+		              ticks: {
+		              
+		                     min: 0,
+		                     max: 100,
+		                     callback: function(value){return value+ "%"}
+		                  },  
+		  								scaleLabel: {
+		                     display: true,
+		                     labelString: "Percentage"
+		                  }
+		              }]
+		          }
+		      }
+		});
+	</script>
 @endsection

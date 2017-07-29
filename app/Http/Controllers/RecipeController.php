@@ -65,9 +65,20 @@ class RecipeController extends Controller
     	$similar = json_decode($results);
 
     	// dd($similar);
-    	dd($recipe->nutrition->nutrients->pluck('percentOfDailyNeeds'));
-    	
-    	$steps = $recipe->analyzedInstructions[0]->steps;
-    	return view('recipe.show', compact('recipe', 'steps', 'similar'));
+    	// dd($recipe);
+        $titles = [];
+        $needs = [];
+        foreach ($recipe->nutrition->nutrients as $item) {
+            // dd($item);
+            $titles[] = $item->title;
+            $needs[] = $item->percentOfDailyNeeds;
+        }
+        // dd(json_encode($titles));
+
+        $steps = empty($recipe->analyzedInstructions) ? false : $recipe->analyzedInstructions[0]->steps;
+    	// dd($steps);
+
+
+    	return view('recipe.show', compact('recipe', 'steps', 'similar', 'titles', 'needs'));
     }
 }

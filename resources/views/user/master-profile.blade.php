@@ -47,18 +47,7 @@
 	<!-- container -->
 		</div> 
 		<!-- user-header -->
-	{{-- <div class="container">
-		<div class="row">
-			<ul class="tabs clearfix">
-				<li><a href="#">Profile Overview</a></li>
-				<li><a href="#">Friends</a></li>
-				<li><a href="/profile/{{ $user->id }}/reviews">Reviews</a></li>
-				<li><a href="/profile/{{ $user->id }}/photos">Business Photos</a></li>
-				<li><a href="/profile/{{ $user->id }}/bookmarks">Bookmarks</a></li>
-				<li><a href="/profile/{{ $user->id }}/recipe">Recipe</a></li>
-			</ul>
-		</div> <!-- row -->
-	</div> --}}
+
 
 <div class="container">
 	<div class="row">
