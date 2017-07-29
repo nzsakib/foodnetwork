@@ -53,7 +53,7 @@
                 <div class="col-md-9 img-gallary">
                     <img src="http://via.placeholder.com/250x250" alt="">
                     <img src="http://via.placeholder.com/250x250" alt="">
-                    <img src="http://via.placeholder.com/250x250" alt="">
+                
                 </div>
             </div>
         </div> <!-- end container -->

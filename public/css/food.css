@@ -1,3 +1,65 @@
+/* ==========================
+*  Clarifai
+============================*/
+.upload-file {
+	width: 100%;
+	height: 300px;
+	background: #26a69a;
+	text-align: center;
+	position: relative;
+	margin-top: 20px;
+
+	border-radius: 5px;
+}
+
+.clarifai #image-holder img {
+	width: 100%;
+	height: 300px;
+	border-radius: 5px;
+}
+
+.clarifai-form {
+	position: absolute;
+	left: 25%;
+	top: 25%;
+	display: none;
+}
+
+.upload-icon {
+	font-size: 50px;
+	position: absolute;
+	top: 70px;
+	left: 180px;
+	color: #fff;
+}
+
+.clarifai {
+	height: 800px;
+}
+
+.clarifai .loading {
+	margin-top: 40px;
+}
+
+.clarifai .right ul {
+	padding: 0;
+	margin: 0;
+	/*display: block;*/
+	/*width: 200px;*/
+}
+
+.clarifai .right ul li {
+	list-style: none;
+	border: 1px solid #00bfa5;
+	/*display: block;*/
+	/*width: 100px;*/
+	padding: 10px 10px 10px 30px;
+	background: #1de9b6;
+	color: #000;
+	font-weight: bold;
+	
+}
+
 .container {
 	width: 1000px;
 }

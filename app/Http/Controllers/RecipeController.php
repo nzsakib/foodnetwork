@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use DarrynTen\Clarifai\Clarifai;
 
 class RecipeController extends Controller
 {
@@ -80,5 +81,41 @@ class RecipeController extends Controller
 
 
     	return view('recipe.show', compact('recipe', 'steps', 'similar', 'titles', 'needs'));
+    }
+
+    public function image()
+    {
+        
+        return view("recipe.clarifai");
+    }
+    public function postClarifai()
+    {
+        // return "clicked";
+        // return request()->all();
+        if(request()->hasFile('image')) {
+            $image = request()->file('image');
+            $filename = $image->getClientOriginalName();
+            $dir = public_path('clarifai');
+            $image->move($dir, $filename);
+            $imageUrl = url('clarifai/' . $filename);
+            $clarifai = new Clarifai(
+                'MSTt5aJ9KDRihYRrPN4cpTBzynnP-wY8Ra9HBc-t',
+                '4KfWK-sbHOJciFl5jwZMq0Ty8j-f0C1FVDbr6z61'
+            );
+            // dd($imageUrl);
+            $imageData = file_get_contents($imageUrl);
+            $base64 = base64_encode($imageData);
+            // dd($base64);
+            // return $base64;
+            $modelResult = $clarifai->getModelRepository()->predictEncoded(
+                $base64,
+                \DarrynTen\Clarifai\Repository\ModelRepository::FOOD
+            );
+
+            $result = (object)$modelResult;
+
+            return $result->outputs[0]['data']['concepts'];
+
+        }
     }
 }

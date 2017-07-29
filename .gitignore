@@ -2,6 +2,7 @@
 /public/storage
 /public/hot
 /public/biz/images
+/public/clarifai/*
 /storage/*.key
 /vendor
 /.idea

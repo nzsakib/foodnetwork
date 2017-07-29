@@ -48,3 +48,9 @@ Route::get('user_reviews/{id}/react/cool', 'ReactionsController@cool');
 Route::get('admin/dashboard', 'AdminController@dashboard');
 
 Route::get('restaurant/{place_id}/bookmark', 'PlacesController@bookmark');
+
+
+// image recognition 
+
+Route::get('imgclarifai', 'RecipeController@image');
+Route::post('imgclarifai', 'RecipeController@postClarifai');
