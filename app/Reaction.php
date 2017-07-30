@@ -8,10 +8,8 @@ class Reaction extends Model
 {
     protected $fillable = ['name'];
 
-    public function review()
+    public function reviews()
     {
-    	return $this->belongsToMany('App\Review', 'reactables')
-    				->withPivot('user_id')
-    				->withTimestamps();
+    	return $this->belongsTo('App\Review');
     }
 }

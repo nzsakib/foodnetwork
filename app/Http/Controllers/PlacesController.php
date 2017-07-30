@@ -78,10 +78,16 @@ class PlacesController extends Controller
         // Get reviews from database 
         
         //$dbReviews = Review::with('user')->where('place_id', $id)->latest()->get();
-        $dbReviews = Review::with(['user', 'photo'])->where('reviews.place_id', $id)
-                             ->latest()
-                            ->get()
-                             ;
+        $dbReviews = Review::with(['user', 'photo'])
+                            ->with(['reactions' => function($query) {
+                                $query->select( DB::raw("count(*) as totalCount, reaction, review_id") );
+                                $query->groupBy('reaction', 'review_id');
+                                $query->orderBy('reaction', 'asc');
+                            }])
+                            ->where('reviews.place_id', $id)
+                            ->latest()
+                            ->get();
+        // dd($dbReviews);
         // dd($dbReviews);
         // $dbReviews = DB::table('reviews')
         //     ->where('reviews.place_id', $id)

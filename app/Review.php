@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 class Review extends Model
 {
     protected $fillable = ['user_id', 'body', 'rating', 'place_id', 'restaurant_id'];
@@ -23,10 +23,8 @@ class Review extends Model
     	return $this->belongsTo('App\Restaurant');
     }
 
-    public function reaction()
+    public function reactions()
     {
-        return $this->belongsToMany('App\Reaction', 'reactables')
-                    ->withPivot('user_id')
-                    ->withTimestamps();
+        return $this->hasMany('App\Reaction');
     }
 }

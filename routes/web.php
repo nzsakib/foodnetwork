@@ -44,6 +44,11 @@ Route::get('user_reviews/{id}/react/cool', 'ReactionsController@cool');
 
 // (select name,count(*) as count from reactables join reactions on reaction_id = reactions.id 
 // where review_id = 7 group by name);
+// 
+// select count(*) as totalCount, reaction_id
+// from reactables
+// where review_id = 7
+// group by reaction_id;
 
 Route::get('admin/dashboard', 'AdminController@dashboard');
 

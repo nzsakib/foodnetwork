@@ -140,14 +140,14 @@
                         </ul>
                     </div> <!-- dropdown end -->
                 
-                    <div class="pro-image col-md-2">
+                    <div class="pro-image col-md-3">
                         <h3><a href="/profile/{{ $review->user->id }}/">
                             {{ $review->user->first_name }} {{ $review->user->last_name }}
                         </a></h3>
                         <img src="{{ asset('uploads/avatars/' . $review->user->avatar) }}">
                     
                     </div>
-                    <div class="user-comments col-md-10">
+                    <div class="user-comments col-md-9">
                         <h4 class="user-rating">
                        @for ($i=0; $i < (int)$review->rating; $i++)
                            <i class="fa fa-star"></i>
@@ -174,17 +174,28 @@
                         <!-- user vote area -->
                         <div class="row user-vote">
                             <p>Was this review ... ?</p>
+                            
+                            <?php 
+                                $react = $review->reactions->toArray(); 
+                                $r = array_pluck($react, 'totalCount', 'reaction');
+                            ?>
                             <a href="/user_reviews/{{ $review->id }}/react/useful" class="btn btn-sm btn-default">
                                 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                                Useful 
+                                Useful @if(array_has($r, 1))
+                                    <span class="badge">{{ $r[1] }}</span>
+                                        @endif
                             </a>
                             <a href="/user_reviews/{{ $review->id }}/react/funny" class="btn btn-sm btn-default">
                                 <i class="fa fa-smile-o" aria-hidden="true"></i>
-                                Funny
+                                Funny @if(array_has($r, 2))
+                                    <span class="badge">{{ $r[2] }}</span>
+                                        @endif
                             </a>
                             <a href="/user_reviews/{{ $review->id }}/react/cool" class="btn btn-sm btn-default">
                                 <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                Cool
+                                Cool @if(array_has($r, 3))
+                                    <span class="badge">{{ $r[3] }}</span>
+                                        @endif
                             </a>
                         </div>
                         <!-- end user vote area -->
