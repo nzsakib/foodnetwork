@@ -99,7 +99,7 @@
 	height: 80px;
 	margin: auto;
 	position: absolute;
-	left: 90px;
+	left: 70px;
 	top: 10px;
 } 
 
@@ -278,7 +278,7 @@ body {
 .search {
 	text-align: center;
 	height: 700px;
-	background: #e3e3e3 url('../images/front.jpg') no-repeat;
+	background: #e3e3e3 url('../images/front2.jpg') no-repeat;
 	background-size: 100% 100%;
 	background-position: top; 
 	color: #fff;

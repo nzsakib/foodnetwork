@@ -3,6 +3,7 @@
 /public/hot
 /public/biz/images
 /public/clarifai/*
+public/uploads/avatars/
 /storage/*.key
 /vendor
 /.idea

@@ -113,7 +113,7 @@ class ProfileController extends Controller
     	return redirect()->back();
     }
 
-    public function update_avatar(Request $request)
+    public function update_avatar()
     {
         // dd($request->all());
         if(request()->hasFile('avatar')) {
@@ -129,16 +129,46 @@ class ProfileController extends Controller
         }
     }
 
-    public function getEditProfile($id)
+    public function getProfileSettings($id)
     {
         $user = User::findorFail($id);
 
-        return view('profile.edit', compact('user'));
+        return view('profile.settings', compact('user'));
     }
 
-    public function postEditProfile($id)
+    public function postProfileSettings($id)
     {
-        dd($id);
+        $this->validate(request(), [
+            'first_name'    => 'required|min:3',
+            'last_name'     => 'required|min:3',
+            'location'      => 'required|min:3',
+            'email'         => 'nullable|email|unique:users',
+            'password'      => 'confirmed'
+        ]);
+        $user = Auth::user();
+        // dd(request());
+        if(request()->hasFile('avatar')) {
+            $avatar = request()->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            // dd(public_path());
+            Image::make($avatar)->resize(300,300)->save( public_path('uploads/avatars/' . $filename) );
+
+            // $data['avatar'] = $filename;
+            $user->avatar = $filename;
+        }
+        $user->first_name = request('first_name');
+        $user->last_name = request('last_name');
+        $user->location = request('location');
+        if(request('email'))
+            $user->email = request('email');
+        $user->bio = request('bio');
+        $user->loves = request('loves');
+        if(request('password'))
+            $user->password = bcrypt(request('password'));
+        $user->save();
+
+        return redirect()->back()->with('notice', 'Your Profile is updated successfully');
+
     }
 
     public function reviews($id)
@@ -167,6 +197,8 @@ class ProfileController extends Controller
         return view('user.profile.bookmark', compact('user', 'bookmarks'));
     }
 
+ 
+    // later replace this function
     public function saveRestaurant($placeid)
     {
         $url = "https://maps.googleapis.com/maps/api/place/details/json?placeid={$placeid}&key=AIzaSyDfFt092pXHiO8JMivyLvj1DF7Y04Mndmo";

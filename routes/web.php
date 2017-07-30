@@ -23,8 +23,8 @@ Route::get('profile/{id}/reviews', 'ProfileController@reviews');
 Route::get('profile/{id}/photos', 'ProfileController@photos');
 Route::get('profile/{id}/bookmarks', 'ProfileController@bookmarks');
 
-Route::get('profile/{id}/edit', 'ProfileController@getEditProfile');
-Route::post('profile/{id}/edit', 'ProfileController@postEditProfile');
+Route::get('profile/{id}/settings', 'ProfileController@getProfileSettings');
+Route::post('profile/{id}/settings', 'ProfileController@postProfileSettings')->name('settings');
 Route::post('profile', 'ProfileController@update_avatar');
 Route::post('comments', 'ProfileController@comment');
 Route::get('biz_photos/{id}', 'RestaurantController@photo');
