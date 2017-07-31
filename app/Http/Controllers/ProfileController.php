@@ -34,6 +34,11 @@ class ProfileController extends Controller
                     'reviews.photo',
                     'reviews' => function($query) {
                         $query->limit(10);
+                        $query->with(['reactions' => function($query) {
+                                $query->select( DB::raw("count(*) as totalCount, reaction, review_id") );
+                                $query->groupBy('reaction', 'review_id');
+                                $query->orderBy('reaction', 'asc');
+                            }]);
                     }])
                     ->findorFail($id);
         // dd($user->created_at->format("F Y"));
@@ -174,7 +179,13 @@ class ProfileController extends Controller
     public function reviews($id)
     {
         $user = User::findorFail($id);
-        $reviews = $user->reviews()->paginate(10);
+        $reviews = $user->reviews()
+                    ->with(['reactions' => function($query) {
+                        $query->select( DB::raw("count(*) as totalCount, reaction, review_id") );
+                        $query->groupBy('reaction', 'review_id');
+                        $query->orderBy('reaction', 'asc');
+                    }])
+                    ->paginate(10);
 
         return view('user.profile.reviews', compact('user', 'reviews'));
     }

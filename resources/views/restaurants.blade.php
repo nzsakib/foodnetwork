@@ -28,7 +28,7 @@
 	   		 <div class="col-sm-12 col-md-12 col-lg-8 text-xs-center text-sm-left">
 	       		 <div class="row">
                <div class="col-md-3">
-  	            	<a href="{{ url('/restaurant/' . $shop->place_id) }}"><img src="http://placehold.it/110x110" class="img-thumbnail" alt="Food logo"></a>
+  	            	<a href="{{ url('/restaurant/' . $shop->place_id) }}"><img src="{{ asset('/images/restaurant-icon.png') }} " class="img-thumbnail" alt="Food logo"></a>
   	        	</div>
   	         
   	        <div class="shop-details col-md-8">

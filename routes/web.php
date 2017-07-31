@@ -17,7 +17,8 @@ Route::post('/auth', 'AuthController@login');
 Route::get('auth/register', 'AuthController@register')->middleware('guest');
 Route::post('auth/create', 'AuthController@create');
 Route::get('logout', 'AuthController@logout');
-Route::get('user/{id}', 'ProfileController@profile');
+// Route::get('user/{id}', 'ProfileController@profile');
+
 Route::get('profile/{id}', 'ProfileController@profile');
 Route::get('profile/{id}/reviews', 'ProfileController@reviews');
 Route::get('profile/{id}/photos', 'ProfileController@photos');

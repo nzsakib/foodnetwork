@@ -1,4 +1,36 @@
 /* ==========================
+*  User profile
+============================*/
+.user-profile .restaurant-img {
+	margin-top: 35px;
+}
+
+.user-profile .time {
+	font-size: 14px;
+	color: #616161;
+	text-align: center;
+	margin-top: 6px;
+}
+
+.user-profile .profile-rating {
+	font-size: 16px;
+	color: #f44336;
+	margin-top: 18px;
+
+}
+
+.user-profile .comment {
+	font-family: helvetica, ariel, sans-serif;
+	margin-left: 10px;
+}
+
+.user-profile .single-review {
+	padding: 10px;
+	margin: 5px;
+	border-bottom: 1px solid #bdbdbd;
+}
+
+/* ==========================
 *  review edit page
 ============================*/
 .sidebar-review .image {
