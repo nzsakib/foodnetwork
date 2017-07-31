@@ -12,23 +12,44 @@ class ReactionsController extends Controller
 {
    	public function useful($id)
    	{
-   		
-         $r = Reaction::where(DB::raw('ip = INET_ATON("$ip")'));
-         // if null , ip not voted
-         //    vote with ip 
-   		$user = Auth::user();
-         $reacted = new Reaction;
-         $reacted->reaction = 1;
-         if(Auth::check())
-            $reacted->user_id = Auth::id();
-         
-   		// $review = Review::find($id);
-   		$data = [
-   			'reaction_id' 	=> $reaction->id,
-   			'user_id'		=> $user->id,
-   			'review_id'		=> (int)$id
-   		];
-   		//reaction, user_id / ip , review_id
-   		return redirect()->back();
+   		$this->reactIfNotreacted($id, 1);
+         return redirect()->back();   
    	}
+
+      public function funny($id)
+      {
+         $this->reactIfNotreacted($id, 2);
+         return redirect()->back();   
+      }
+
+      public function cool($id)
+      {
+         $this->reactIfNotreacted($id, 3);
+         return redirect()->back();   
+      }
+
+      public function reactIfNotreacted($review_id, $checkReaction)
+      {
+         $ip = request()->ip();
+         $r = Reaction::where([
+                           [DB::raw('ip = INET_ATON("$ip")')],
+                           ['review_id', '=', $review_id]
+                        ])->first();
+         if($r) {
+            // user previously reviewed, now update or delete from db
+            if($r->reaction == $checkReaction)
+               $r->delete();
+            else {
+               $r->reaction = $checkReaction;
+               $r->save();
+            }
+         }
+         else {
+            Reaction::create([
+               'ip'  => DB::raw('ip = INET_ATON("$ip")'),
+               'reaction'  => $checkReaction,
+               'review_id' => $review_id
+            ]);
+         }
+      }
 }
