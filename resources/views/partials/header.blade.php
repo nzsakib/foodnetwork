@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="/recipe">What's on your fridge? <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+        <li><a href="imgclarifai">Find Ingredients in image</a></li>
         
       </ul>
       
@@ -25,7 +25,9 @@
           <li><a href="/auth/register">Register</a></li>
         @else
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="position: relative;">
+              <img src="{{ asset('/uploads/avatars/' . Auth::user()->avatar) }}" style="width: 32px; height: 32px; position: absolute; top: 10px; left: -30px; border-radius: 50%;">
+              {{ Auth::user()->name }} <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/profile/{{ Auth::id() }}/settings">Settings</a></li>
               <li><a href="{{ url('/profile/' . Auth::id()) }}">Profile</a></li>

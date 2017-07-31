@@ -8,7 +8,7 @@
 
             <div class="row">
                 @include('partials.notice')
-                <div class="col-xs-12 col-sm-12  col-md-6 col-lg-6">
+                <div class="col-xs-12 col-sm-12  col-md-8 col-lg-8">
                     <h2>{{ $shop->name }}</h2>
                     @if ( isset($shop->opening_hours) && $shop->opening_hours->open_now )
                         <a class="btn btn-sm btn-green">Open</a>
@@ -16,25 +16,33 @@
                         <a class="btn btn-sm btn-red">Closed</a>
                     @endif 
                     <div class="claim">
-                        <a href="#">Unclaimed</a>
+                        
                     </div>
                     @if ( isset($shop->rating) )
                         @for ($i=0; $i < (int)$shop->rating; $i++)
                             <i class="fa fa-star"></i>
                         @endfor
+                        @for ($i=0; $i < 5-(int)$shop->rating; $i++)
+                            <i class="fa fa-star-o"></i>
+                        @endfor
                     @endif
-                    <div class="category">
-                        Implement category
-                    </div>
+                    
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 profile-desc">
-                   <a href="#" class="btn btn-primary"><i class="fa fa-star"></i> Write a Review</a>
-
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 profile-desc">
+                  
                    <div class="btn-group" role="group" aria-label="...">
-                     <a type="button" href="/upload" class="btn btn-default"><i class="fa fa-camera" aria-hidden="true"></i> Add Photo</a>
                      <a type="button" href="/share" class="btn btn-default"><i class="fa fa-share-square-o" aria-hidden="true"></i> Share</a>
                      <a type="button" href="/restaurant/{{ $shop->place_id }}/bookmark" class="btn btn-default"> <i class="fa fa-bookmark" aria-hidden="true"></i>Bookmark</a>
                    </div>
+                   <!-- AddToAny BEGIN -->
+                   <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_google_plus"></a>
+                   </div>
+                   <script async src="https://static.addtoany.com/menu/page.js"></script>
+                   <!-- AddToAny END -->
 
                 </div> <!-- end column --> 
             </div> <!-- end row -->
@@ -42,12 +50,10 @@
             <!-- gallary and info section -->
             <div class="row">
                 <div class="col-md-3 card">
-                    <div id="topmap"></div>
+                    
                 </div>
                 <div class="col-md-9 img-gallary">
-                    <img src="http://via.placeholder.com/250x250" alt="">
-                    <img src="http://via.placeholder.com/250x250" alt="">
-                
+                    
                 </div>
             </div>
         </div> <!-- end container -->

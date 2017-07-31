@@ -134,6 +134,7 @@
 .clarifai .right ul {
 	padding: 0;
 	margin: 0;
+	margin-top: 30px;
 	/*display: block;*/
 	/*width: 200px;*/
 }
@@ -141,13 +142,14 @@
 .clarifai .right ul li {
 	list-style: none;
 	border: 1px solid #00bfa5;
-	/*display: block;*/
-	/*width: 100px;*/
-	padding: 10px 10px 10px 30px;
+	display: inline-block;
+	padding: 10px 10px 10px 10px;
 	background: #1de9b6;
 	color: #000;
 	font-weight: bold;
-	
+	border-radius: 5px;
+	margin-right: 10px;
+	margin-top: 10px;
 }
 
 .container {
@@ -369,9 +371,10 @@ body {
 .search {
 	text-align: center;
 	height: 700px;
-	background: #e3e3e3 url('../images/front2.jpg') no-repeat;
-	background-size: 100% 100%;
-	background-position: top; 
+	/*background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('landingpagepic.jpg');*/
+	background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), #e3e3e3 url('../images/front2.jpg') no-repeat;
+	background-size: cover;
+	background-position: center top; 
 	color: #fff;
 
 	margin: 0;

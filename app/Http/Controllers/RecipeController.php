@@ -92,6 +92,10 @@ class RecipeController extends Controller
     {
         // return "clicked";
         // return request()->all();
+        $this->validate(request(), [
+            'image' => 'required|mimes:jpeg,jpg,png,tiff,bmp'
+        ]);
+
         if(request()->hasFile('image')) {
             $image = request()->file('image');
             $filename = $image->getClientOriginalName();

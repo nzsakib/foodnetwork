@@ -23,7 +23,7 @@
 			</div>
 			<div class="col-md-5 right">
 				<ul class="all-items">
-					
+
 				</ul>
 			</div>
 		</div>
@@ -122,6 +122,7 @@
 	              result.forEach(function(objItem) {
 	            	var name = objItem.name;
 	            	ul.append("<li class='animated fadeInUp'>" + name + "</li>");
+	            	
 	              });
 	        }
 	    });
