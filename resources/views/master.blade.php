@@ -49,6 +49,7 @@
     {{-- <script src="{{ asset('js/animsition.min.js') }}"></script> --}}
     <script src="{{ asset('js/bootstrap-slider.min.js') }}"></script>
     <script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
+    @yield('plugins')
     {{-- <script src="{{ asset('js/headroom.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/foodpicky.min.js') }}"></script> --}}
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgEKCmglHUF4eSSfD8jusFSxgFVjGnEPc&libraries=places&callback=initMap"></script>

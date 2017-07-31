@@ -430,7 +430,7 @@ footer h4 {
 }
 
 /* ==========================
-*  Profile Page
+*  Restaurant Profile Page
 ============================*/
 
 img.profile-pic {
@@ -457,6 +457,70 @@ img.profile-pic {
 	border-radius: 50%;
 	width: 100px;
 	height: 100px;
+}
+
+.pro-image {
+	margin-top: 10px;
+	text-align: center;
+}
+.pro-image h3 a {
+	color: #01579b;
+	font-size: 18px;
+}
+
+.pro-image p.location {
+	margin-top: 10px;
+	font-size: 13px;
+	color: #424242;
+	font-weight: bold;
+}
+.user-comments .user-rating {
+	margin-left: 0;
+	color: #f44336;
+}
+
+.user-comments .timeline {
+	font-size: 12px;
+	color: #757575;
+	font-weight: bold;
+}
+
+.user-comments p.comment-body {
+	font-size: 14px;
+	color: #212121;
+}
+
+.comment-img {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.comment-img img {
+	border-radius: 7px;
+}
+
+.user-vote {
+	margin: 20px 0 0 0px;
+}
+
+.user-vote p {
+	font-size: 12px;
+	color: #757575;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.user-vote a {
+	background: #eeeeee;
+	border: 1px solid #bdbdbd;
+	color: #616161;
+	font-weight: bold;
+	margin-right: 5px;
+	padding: 6px;
+}
+
+.user-vote a span.badge {
+	background: #01579b;
 }
 
 .single-comment {

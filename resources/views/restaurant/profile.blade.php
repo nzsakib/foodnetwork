@@ -145,16 +145,27 @@
                             {{ $review->user->first_name }} {{ $review->user->last_name }}
                         </a></h3>
                         <img src="{{ asset('uploads/avatars/' . $review->user->avatar) }}">
-                    
+                        <p class="location">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            @if($review->user->location)
+                                {{ $review->user->location }}
+                            @else 
+                                Unknown 
+                            @endif
+                        </p>
                     </div>
                     <div class="user-comments col-md-9">
                         <h4 class="user-rating">
                        @for ($i=0; $i < (int)$review->rating; $i++)
                            <i class="fa fa-star"></i>
                        @endfor
+                       @for ($i=0; $i < 5-(int)$review->rating; $i++)
+                           <i class="fa fa-star-o"></i>
+                       @endfor
                        </h4>
                         <span class="timeline"> {{ $review->created_at->diffForHumans() }}</span>
-                        <p>{!! nl2br($review->body) !!}</p>
+                        
+                        <p class="comment-body">{!! nl2br($review->body) !!}</p>
 
                         @if(count($review->photo) > 0)
                             <div class="row comment-img">
@@ -179,19 +190,19 @@
                                 $react = $review->reactions->toArray(); 
                                 $r = array_pluck($react, 'totalCount', 'reaction');
                             ?>
-                            <a href="/user_reviews/{{ $review->id }}/react/useful" class="btn btn-sm btn-default">
+                            <a href="/user_reviews/{{ $review->id }}/react/useful" class="btn btn-sm ">
                                 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                                 Useful @if(array_has($r, 1))
                                     <span class="badge">{{ $r[1] }}</span>
                                         @endif
                             </a>
-                            <a href="/user_reviews/{{ $review->id }}/react/funny" class="btn btn-sm btn-default">
+                            <a href="/user_reviews/{{ $review->id }}/react/funny" class="btn btn-sm ">
                                 <i class="fa fa-smile-o" aria-hidden="true"></i>
                                 Funny @if(array_has($r, 2))
                                     <span class="badge">{{ $r[2] }}</span>
                                         @endif
                             </a>
-                            <a href="/user_reviews/{{ $review->id }}/react/cool" class="btn btn-sm btn-default">
+                            <a href="/user_reviews/{{ $review->id }}/react/cool" class="btn btn-sm ">
                                 <i class="fa fa-heart-o" aria-hidden="true"></i>
                                 Cool @if(array_has($r, 3))
                                     <span class="badge">{{ $r[3] }}</span>
@@ -275,3 +286,12 @@ center: {lat: {{ $shop->geometry->location->lat }}, lng: {{ $shop->geometry->loc
 
 </section>
 @stop
+
+
+
+@section('plugins')
+    <script src="{{ asset('js/autogrow.js') }}"></script>
+    <script>
+        $('textarea').autogrow();
+    </script>
+@endsection

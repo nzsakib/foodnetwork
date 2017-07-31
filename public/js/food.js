@@ -1,8 +1,4 @@
 
-// $('#mytabs a').click(function (e) {
-//   e.preventDefault();
-//   $(this).tab('show');
-// });
 
 $("a.image-icon").click(function () {
   $(".new-comment input[type='file']").trigger('click');
