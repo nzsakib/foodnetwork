@@ -31,10 +31,12 @@ class ReactionsController extends Controller
       public function reactIfNotreacted($review_id, $checkReaction)
       {
          $ip = request()->ip();
+
          $r = Reaction::where([
-                           [DB::raw('ip = INET_ATON("$ip")')],
+                           ['ip', '=', DB::raw("INET_ATON('$ip')")],
                            ['review_id', '=', $review_id]
                         ])->first();
+         // dd($r);
          if($r) {
             // user previously reviewed, now update or delete from db
             if($r->reaction == $checkReaction)
@@ -46,10 +48,11 @@ class ReactionsController extends Controller
          }
          else {
             Reaction::create([
-               'ip'  => DB::raw('ip = INET_ATON("$ip")'),
+               'ip'  => DB::raw("INET_ATON('$ip')"),
                'reaction'  => $checkReaction,
                'review_id' => $review_id
             ]);
+            
          }
       }
 }
