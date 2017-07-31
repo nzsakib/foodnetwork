@@ -136,6 +136,9 @@ class ProfileController extends Controller
 
     public function getProfileSettings($id)
     {
+        if(Auth::id() != (int)$id) {
+            return redirect()->back();
+        }
         $user = User::findorFail($id);
 
         return view('profile.settings', compact('user'));
@@ -199,6 +202,16 @@ class ProfileController extends Controller
         return view('user.profile.photos', compact('user', 'photos'));
     }
 
+    public function photoDelete($id)
+    {
+        $photo = Photo::findOrFail($id);
+        if($photo->user_id != Auth::id())
+            return redirect()->back()->with('Sorry You are not authorized.');
+        $photo->delete();
+
+        return redirect()->back()->with('notice', 'Photo is deleted successfulyy');
+    }
+
     public function bookmarks($id)
     {
         $user = User::findorFail($id);
@@ -206,6 +219,16 @@ class ProfileController extends Controller
         $bookmarks = Bookmark::with('restaurant')->where('user_id', '=', $id)->paginate(20);
         // dd($bookmarks);
         return view('user.profile.bookmark', compact('user', 'bookmarks'));
+    }
+
+    public function bookmarkDelete($id)
+    {
+        $bookmark = Bookmark::findOrFail($id);
+        if($bookmark->user_id != Auth::id())
+            return redirect()->back()->with('notice', 'Sorry You are not authorized.');
+        $bookmark->delete();
+
+        return redirect()->back()->with('notice', 'Bookmark is deleted successfulyy');
     }
 
  

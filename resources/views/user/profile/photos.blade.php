@@ -4,7 +4,9 @@
 	<div class="col-md-9 photos">
 		@foreach ($photos as $photo)
 			<div class="single">
-				<img src="{{ url('biz/images/' . $photo->place_id . '/' . $photo->filename) }}" class="img-responsive" data-toggle="modal" data-target="#imageModal{{ $photo->id }}">	
+				<a class="modalLink" href="{{ url('biz/images/' . $photo->place_id . '/' . $photo->filename) }}">
+				<img src="{{ url('biz/images/' . $photo->place_id . '/' . $photo->filename) }}" class="img-responsive" data-toggle="modal" data-target="#imageModal{{ $photo->id }}">
+				</a>	
 			</div>
 
 			<div class="modal fade" id="imageModal{{ $photo->id }}" role="dialog">
@@ -19,9 +21,9 @@
 			          <img src="{{ url('biz/images/' . $photo->place_id . '/' . $photo->filename) }}" class="img-responsive">
 			        </div>
 			        <div class="modal-footer">
-			          <button>Like</button>
-			          <button>Delete</button>
-			          <button>Report</button>
+			          @if(Auth::id() == $photo->user_id)
+							<a href="{{ route('photoDelete', ['id' => $photo->id]) }}" class="btn btn-danger">Delete</a>
+			          @endif
 			        </div> <!-- modal footer -->
 			      </div> <!-- modal content -->
 			      
@@ -30,4 +32,12 @@
 			
 		@endforeach
 	</div>
+@endsection
+
+@section('js')
+	<script>
+		$("a.modalLink").click(function(e) {
+			e.preventDefault();
+		});
+	</script>
 @endsection

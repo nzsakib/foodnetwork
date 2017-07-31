@@ -63,7 +63,7 @@
 							{{ $review->body }}
 						</p> 
 					</div>
-					
+
 					<!-- user vote area -->
 					<div class="row user-vote">
 					    <p>Was this review ... ?</p>
@@ -95,7 +95,7 @@
 				</div>
 			@endforeach
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-3 profile-sidebar">
 				<h4>About Nazmus Sakib</h4>
 				<h5>Rating Distribution</h5>
 			

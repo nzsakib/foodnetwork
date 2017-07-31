@@ -24,11 +24,11 @@ Route::get('profile/{id}/reviews', 'ProfileController@reviews');
 Route::get('profile/{id}/photos', 'ProfileController@photos');
 Route::get('profile/{id}/bookmarks', 'ProfileController@bookmarks');
 
-Route::get('profile/{id}/settings', 'ProfileController@getProfileSettings');
+Route::get('profile/{id}/settings', 'ProfileController@getProfileSettings')->middleware('user');
 Route::post('profile/{id}/settings', 'ProfileController@postProfileSettings')->name('settings');
 Route::post('profile', 'ProfileController@update_avatar');
 Route::post('comments', 'ProfileController@comment');
-Route::get('biz_photos/{id}', 'RestaurantController@photo');
+// Route::get('biz_photos/{id}', 'RestaurantController@photo');
 
 Route::get('recipe', 'RecipeController@index');
 Route::post('recipe', 'RecipeController@searchRecipe');
@@ -44,6 +44,9 @@ Route::get('user_reviews/{id}/flag', 'ReviewsController@report');
 Route::get('user_reviews/{id}/react/useful', 'ReactionsController@useful');
 Route::get('user_reviews/{id}/react/funny', 'ReactionsController@funny');
 Route::get('user_reviews/{id}/react/cool', 'ReactionsController@cool');
+
+Route::get('user_photos/{id}/delete', 'ProfileController@photoDelete')->name('photoDelete');
+Route::get('user_bookmark/{id}/delete', 'ProfileController@bookmarkDelete')->name('bookmarkDelete');
 
 // (select name,count(*) as count from reactables join reactions on reaction_id = reactions.id 
 // where review_id = 7 group by name);

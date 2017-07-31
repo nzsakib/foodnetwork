@@ -4,6 +4,7 @@
 		<div class="user-header">
 	<div class="container">
 			 <div class="row">
+			 
 			 	<div class="col-md-9">
 			 		<img src="{{ asset('uploads/avatars/' . $user->avatar)  }}" class="profile-pic">
 			 		<h1>{{ $user->name }}</h1>
@@ -23,23 +24,11 @@
 			 		 	User bio not provided
 			 		 @endif
 			 		</div>
-			 		{{-- <h2>{{ $user->name }}'s Profile</h2>
-			 		<form enctype="multipart/form-data" action="{{ url('profile') }}" method="POST">
-			 			<div class="form-group">
-			 				<label>Update Profile Image</label>
-			 				<input type="file" name="avatar">
-			 			</div>
-			 				{{ csrf_field() }}
-			 			<button class="btn btn-primary" type="submit">Submit</button>
-			 		</form> --}}
+			 		
 			 	</div>
 			 	<!-- col-md-10 -->
 			 	<div class="col-md-3">
-			 		<ul>
-			 			<li>Add Friend</li>
-			 			<li>Send Message</li>
-			 			<li>Follow Nazmus Sakib</li>
-			 		</ul>
+			 		
 			 	</div>
 			 </div>
 			 <!-- row -->
