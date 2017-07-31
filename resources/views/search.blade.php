@@ -15,7 +15,8 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     {{-- <link href="css/animsition.min.css" rel="stylesheet"> --}}
-    <link href="css/animate.css" rel="stylesheet">
+    {{-- <link href="css/animate.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/food.css') }}" rel="stylesheet"> 
 </head>

@@ -1,7 +1,7 @@
 <section class="search" data-image-src="{{ asset('images/front.jpg') }}">
    
-    <h1>Search For Nearest Restaurants </h1>
-    <h5 class="">Find restaurants, and get Reviews</h5>
+    <h1 class="animated fadeInDown">Search For Nearest Restaurants </h1>
+    <h5 class="animated fadeInLeft">Find restaurants, and get Reviews</h5>
   
     <form class="form" method="POST" action="{{ url('restaurants') }}">
         {{ csrf_field() }}

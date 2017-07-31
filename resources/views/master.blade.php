@@ -17,8 +17,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet" />
     {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/animsition.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/animsition.min.css') }}" rel="stylesheet"> --}}
+    {{-- <link href="{{ asset('css/animate.css') }}" rel="stylesheet"> --}}
     <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
 
