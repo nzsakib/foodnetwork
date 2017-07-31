@@ -5,15 +5,9 @@
 <section class="shop-profile">
     {{-- <div class="profile"> --}}
         <div class="container">
-                
-            @if(session()->has('notice'))
-                <div class="alert alert-success alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  {{ session()->get('notice') }}
-                </div>
-            @endif
 
             <div class="row">
+                @include('partials.notice')
                 <div class="col-xs-12 col-sm-12  col-md-6 col-lg-6">
                     <h2>{{ $shop->name }}</h2>
                     @if ( isset($shop->opening_hours) && $shop->opening_hours->open_now )
@@ -100,7 +94,7 @@
         <input type="file" name="review-image[]" multiple accept="image/*" />
     </div>
     
-    <button class="btn btn-primary comment-btn" type="submit">Submit</button>
+    <button class="btn btn-dash comment-btn" type="submit">Submit</button>
             </form>
             <img id="image" />
             <div id="image-holder"></div>
@@ -290,8 +284,5 @@ center: {lat: {{ $shop->geometry->location->lat }}, lng: {{ $shop->geometry->loc
 
 
 @section('plugins')
-    <script src="{{ asset('js/autogrow.js') }}"></script>
-    <script>
-        $('textarea').autogrow();
-    </script>
+    
 @endsection

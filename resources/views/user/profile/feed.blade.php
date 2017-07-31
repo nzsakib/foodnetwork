@@ -47,11 +47,9 @@
 			<div class="col-md-3">
 				<h4>About Nazmus Sakib</h4>
 				<h5>Rating Distribution</h5>
-				@foreach ($ratingCount as $rating)
-					<label>{{ $rating->rating  }} Stars</label>: {{ $rating->total  }} <br>
-					
-				@endforeach
 			
+
+				<canvas id="graph" width="100" height="100"></canvas>
 				<h5>Review Votes</h5>
 				<ul>
 					<li>Useful: 28</li>
@@ -81,3 +79,37 @@
 
 
 @stop
+
+@section('js')
+	<script>
+	var bgColors = ['rgba(26, 223, 223, 0.5)',
+					'rgba(26, 223, 223, 0.5)',
+					'rgba(26, 223, 223, 0.5)',
+					'rgba(26, 223, 223, 0.5)',
+					'rgba(26, 223, 223, 0.5)'
+				];
+	var lineColors = ['rgba(26, 223, 223, 1)',
+					'rgba(26, 223, 223, 1)',
+					'rgba(26, 223, 223, 1)',
+					'rgba(26, 223, 223, 1)',
+					'rgba(26, 223, 223, 1)'
+				];
+	var data = {
+		labels: ['1 Star', '2 Star', '3 Star', '4 Star', '5 Star'],
+		datasets: [
+			{
+				label: "Rating Count",
+				backgroundColor: bgColors,
+			    borderColor: lineColors,
+			    borderWidth: 1,
+				data: {!! json_encode(array_pluck($ratingCount->toArray(), 'total' )) !!}
+			}
+		]
+	};
+		var ctx = document.querySelector("#graph").getContext('2d');
+		new Chart(ctx, {
+		  type: 'horizontalBar',
+		  data: data,
+		});
+	</script>
+@endsection

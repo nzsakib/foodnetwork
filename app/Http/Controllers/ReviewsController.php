@@ -38,11 +38,6 @@ class ReviewsController extends Controller
     	return view('reviews.edit', compact('review', 'moreReviews'));
     }
 
-    public function update()
-    {
-    		
-    }
-
     public function report($id)
     {
         $review = Review::find($id);
@@ -95,5 +90,17 @@ class ReviewsController extends Controller
             }
         }
         return redirect()->back()->with('notice', 'Successfully Reported.');
+    }
+
+    public function update($id)
+    {
+        $this->validate(request(), [
+            'rating'    => 'required',
+            'body'      => 'required'
+        ]);
+        // dd(request()->all());
+        $review = Review::where('id', $id)->update(request(['rating', 'body']));
+
+        return redirect()->back()->with('notice', 'Review Successfully updated');
     }
 }

@@ -130,7 +130,7 @@ class PlacesController extends Controller
     public function bookmark($place_id, \App\Maps $maps)
     {
         if(!Auth::check()) {
-            return redirect()->back();
+            return redirect()->back()->with('notice', 'Please log in to bookmark restaurant.');
         }
 
         $restaurant = Restaurant::where('place_id', '=', $place_id)->first();
@@ -149,6 +149,6 @@ class PlacesController extends Controller
         ];
         Bookmark::create($data);
 
-        return redirect()->back();
+        return redirect()->back()->with('notice', 'Restaurant Bookmarked Successfully.');
     }
 }
