@@ -21,11 +21,11 @@ class CreatePhotosTable extends Migration
             $table->integer('review_id')->unsigned()->nullable();
             $table->timestamps();
 
-
-            $table->foreign('review_id')
-                    ->references('id')
-                    ->on('reviews')
-                    ->onDelete('cascade');
+            // recently changed
+            // $table->foreign('review_id')
+            //         ->references('id')
+            //         ->on('reviews')
+            //         ->onDelete('cascade');
         });
     }
 

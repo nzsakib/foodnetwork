@@ -22,10 +22,11 @@ class CreateReviewsTable extends Migration
             $table->integer('restaurant_id');
             $table->timestamps();
 
-            $table->foreign('user_id')
-                    ->references('id')
-                    ->on('users')
-                    ->onDelete('cascade');
+            // recently changed
+            // $table->foreign('user_id')
+            //         ->references('id')
+            //         ->on('users')
+            //         ->onDelete('cascade');
 
             // $table->foreign('place_id')
             //         ->references('place_id')
