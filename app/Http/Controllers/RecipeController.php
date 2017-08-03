@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use File;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use DarrynTen\Clarifai\Clarifai;
@@ -101,6 +102,9 @@ class RecipeController extends Controller
             $image = request()->file('image');
             $filename = $image->getClientOriginalName();
             $dir = public_path('clarifai');
+            if(!File::exists($dir)) {
+                $path = File::makeDirectory( $dir, 0775 );
+            }
             $image->move($dir, $filename);
             $imageUrl = url('clarifai/' . $filename);
             $clarifai = new Clarifai(
