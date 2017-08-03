@@ -30,7 +30,7 @@ class RecipeController extends Controller
     		]
     	]);    
 
-    	$url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" . $ingred . "&limitLicense=false&number=5&ranking=1";
+    	$url = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" . $ingred . "&limitLicense=false&number=10&ranking=1";
 
     	
     	$response = $client->get($url);
