@@ -6,6 +6,7 @@
 	<div class="col-md-12 ">
 	<h3>Login To The System</h3>
 		@include('partials/errors')
+		@include('partials/notice')
 		<form action="{{ url('auth') }}" method="POST">
 			{{ csrf_field() }}
 			@if($refer)

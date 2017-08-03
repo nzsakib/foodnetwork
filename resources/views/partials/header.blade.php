@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="/recipe">What's on your fridge? <span class="sr-only">(current)</span></a></li>
-        <li><a href="imgclarifai">Find Ingredients in image</a></li>
+        <li><a href="/imgclarifai">Find Ingredients in image</a></li>
         
       </ul>
       

@@ -19,16 +19,37 @@ class ProfileController extends Controller
 {
 	public function __construct()
 	{
-		// $this->middleware('user');
-	}
+        // $this->middleware('user');
+    }
     public function profile($id)
     {
+        $reviewCount = \App\Review::where('user_id', '=', $id)->count();
+        $photoCount = \App\Photo::where('user_id', '=', $id)->count();
+        $bookmarkCount = Bookmark::where('user_id', '=', $id)->count();
         
         $ratingCount = DB::table("reviews")
-                ->select(DB::raw("count(rating) as total"), "rating")
-                ->where("user_id", "=", $id)
-                ->groupBy("rating")->get();
+                            ->select(DB::raw("count(rating) as total"), "rating")
+                            ->where("user_id", "=", $id)
+                            ->groupBy("rating")->get();
         
+        $arrayCount = $ratingCount->toArray();
+        $finalArray = [0,0,0,0,0];
+        foreach($arrayCount as $obj) {
+            $finalArray[$obj->rating-1] = $obj->total;
+        }
+
+        $reactionCount = DB::table('reactions')
+                                ->select( DB::raw("count(reaction) as count"), "reaction" )
+                                ->where("user_id", '=', $id)
+                                ->groupBy("reaction")->get();
+       
+        $reactionArray = [0,0,0];
+        foreach($reactionCount->toArray() as $obj) {
+            $reactionArray[$obj->reaction - 1] = $obj->count;
+        }        
+        
+        //$reviewCount = Review::where('user_id', '=', $id)->count();
+
         $user = User::with([
                     'reviews.restaurant', 
                     'reviews.photo',
@@ -45,7 +66,10 @@ class ProfileController extends Controller
         //$user->reviews;
         // dd($user);
         // return view('account', ['user' => Auth::user()]);
-    	return view('user.profile.feed', compact('user', 'ratingCount'));
+    	return view( 'user.profile.feed', 
+            compact('user', 'finalArray', 
+                    'reactionArray', 'bookmarkCount', 
+                    'reviewCount', 'photoCount') );
     }
 
     public function comment()
@@ -181,6 +205,9 @@ class ProfileController extends Controller
 
     public function reviews($id)
     {
+        $reviewCount = Review::where('user_id', '=', $id)->count();
+        $photoCount = Photo::where('user_id', '=', $id)->count();
+
         $user = User::findorFail($id);
         $reviews = $user->reviews()
                     ->with(['reactions' => function($query) {
@@ -190,7 +217,7 @@ class ProfileController extends Controller
                     }])
                     ->paginate(10);
 
-        return view('user.profile.reviews', compact('user', 'reviews'));
+        return view('user.profile.reviews', compact('user', 'reviews', 'reviewCount', 'photoCount'));
     }
 
     public function photos($id)
@@ -199,7 +226,10 @@ class ProfileController extends Controller
 
         $photos = Photo::where('user_id', '=', $id)->paginate(20);
         // dd($photos);
-        return view('user.profile.photos', compact('user', 'photos'));
+        $reviewCount = Review::where('user_id', '=', $id)->count();
+        $photoCount = Photo::where('user_id', '=', $id)->count();
+
+        return view('user.profile.photos', compact('user', 'photos', 'reviewCount', 'photoCount'));
     }
 
     public function photoDelete($id)
@@ -218,7 +248,10 @@ class ProfileController extends Controller
 
         $bookmarks = Bookmark::with('restaurant')->where('user_id', '=', $id)->paginate(20);
         // dd($bookmarks);
-        return view('user.profile.bookmark', compact('user', 'bookmarks'));
+        $reviewCount = Review::where('user_id', '=', $id)->count();
+        $photoCount = Photo::where('user_id', '=', $id)->count();
+
+        return view('user.profile.bookmark', compact('user', 'bookmarks', 'reviewCount', 'photoCount'));
     }
 
     public function bookmarkDelete($id)

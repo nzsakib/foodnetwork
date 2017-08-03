@@ -32,7 +32,7 @@ class AuthController extends Controller
     	if( Auth::attempt(['email' => request('email'), 'password' => request('password')]) ) {
     		return $refer ? redirect($refer) : redirect('/');
     	} else {
-    		return redirect()->back();
+    		return redirect()->back()->with('danger', 'Wrong Email or Password!!');
     	}
 
     }

@@ -95,6 +95,7 @@ class RecipeController extends Controller
         $this->validate(request(), [
             'image' => 'required|mimes:jpeg,jpg,png,tiff,bmp'
         ]);
+        // dd(request());
 
         if(request()->hasFile('image')) {
             $image = request()->file('image');
@@ -118,7 +119,10 @@ class RecipeController extends Controller
 
             $result = (object)$modelResult;
 
-            return $result->outputs[0]['data']['concepts'];
+            $ingredients = $result->outputs[0]['data']['concepts'];
+            // return $result->outputs[0]['data']['concepts'];
+            // dd($ingredients);
+            return view('recipe.clarifai', compact('ingredients', 'filename'));
 
         }
     }

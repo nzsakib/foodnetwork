@@ -31,7 +31,9 @@ class ReactionsController extends Controller
       public function reactIfNotreacted($review_id, $checkReaction)
       {
          $ip = request()->ip();
-
+         $user_id = null;
+         if(Auth::check())
+            $user_id = Auth::id();
          $r = Reaction::where([
                            ['ip', '=', DB::raw("INET_ATON('$ip')")],
                            ['review_id', '=', $review_id]
@@ -47,12 +49,13 @@ class ReactionsController extends Controller
             }
          }
          else {
-            Reaction::create([
+            // User did not reacted before
+            $temp = Reaction::create([
                'ip'  => DB::raw("INET_ATON('$ip')"),
                'reaction'  => $checkReaction,
-               'review_id' => $review_id
+               'review_id' => $review_id,
+               'user_id'   => $user_id
             ]);
-            
          }
       }
 }

@@ -103,26 +103,31 @@
 				<canvas id="graph" width="100" height="100"></canvas>
 				<h5>Review Votes</h5>
 				<ul>
-					<li>Useful: 28</li>
-					<li>Funny: 2</li>
-					<li>Cool: 22</li>
+					<li>Useful: <strong>{{ $reactionArray[0] }}</strong></li>
+					<li>Funny: <strong>{{ $reactionArray[1] }}</strong></li>
+					<li>Cool: <strong>{{ $reactionArray[2] }}</strong></li>
 				</ul>
 
 				<h5>Stats</h5>
 				<ul>
-					<li>Tips: 2</li>
-					<li>Bookmarks: 433</li>
-					<li>Reviews: 2</li>
+					<li>Bookmarks: <strong>{{ $bookmarkCount }}</strong></li>
+					<li>Reviews: <strong>{{ $reviewCount }}</strong></li>
 				</ul>
 
 				<h5>Location</h5>
-				<p>San Francisco, CA</p>
+				<p>{{ $user->location }}</p>
 
 				<h5>Member Since</h5>
 				<p>{{ $user->created_at->format("F Y") }}</p>
 
 				<h5>Things I Love</h5>
-				<p>cheap & great food, wine, and sushi.</p>
+				<p>
+					@if($user->loves)
+						{{ $user->loves }}
+					@else 
+						Yet to discover the world of food !!
+					@endif
+				</p>
 
 				
 			</div>
@@ -153,7 +158,7 @@
 				backgroundColor: bgColors,
 			    borderColor: lineColors,
 			    borderWidth: 1,
-				data: {!! json_encode(array_pluck($ratingCount->toArray(), 'total' )) !!}
+				data: {!! json_encode($finalArray) !!}
 			}
 		]
 	};

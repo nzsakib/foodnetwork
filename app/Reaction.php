@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reaction extends Model
 {
-    protected $fillable = ['ip', 'reaction', 'review_id'];
+    protected $fillable = ['ip', 'reaction', 'review_id', 'user_id'];
 
     public function reviews()
     {

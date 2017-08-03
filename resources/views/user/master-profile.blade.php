@@ -15,7 +15,7 @@
 			 			<p>Unknown Location</p>
 			 		@endif
 			 		<div class="summary">
-			 			58 Friends  12 Reviews   8 Photos
+			 			{{ $reviewCount }} Reviews   {{ $photoCount }} Photos
 			 		</div>
 			 		<div class="bio">
 			 		@if($user->bio)

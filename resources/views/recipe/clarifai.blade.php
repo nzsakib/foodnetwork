@@ -4,7 +4,11 @@
 	<div class="container clarifai">
 		<div class="row">
 			<div class="col-md-7">
+				@include('partials/errors')
 				<div class="upload-file" id="image-holder">
+					@if(isset($filename))
+						<img src="{{ url('/clarifai/' . $filename) }}" alt="" class="thumb-image img-responsive">
+					@endif
 					<div class="upload-icon">
 						<i class="fa fa-upload" aria-hidden="true"></i>
 						<h4>Click Here To Upload</h4>
@@ -13,9 +17,10 @@
 					<form action="/imgclarifai" method="POST" enctype="multipart/form-data" class="clarifai-form">
 					{{ csrf_field() }}
 						<input type="file" name="image" accept="image/*" />
-						<button type="submit" class="btn btn-dash">Analyze</button>
+						{{-- <button type="submit" class="btn btn-dash">Analyze</button> --}}
+						
+						<button class="btn btn-dash " type="submit">Analyze Image</button>
 					</form>
-					<button class="btn btn-dash ajax">Analyze Image</button>
 					
 					<div class="loading pull-right">
 						<img src="{{ asset('/images/loading2.gif') }}" alt="">
@@ -23,7 +28,13 @@
 			</div>
 			<div class="col-md-5 right">
 				<ul class="all-items">
+					@if(isset($ingredients))
+						@foreach ($ingredients as $ingred)
+							<li>{{ $ingred['name'] }} <span class="badge">{{ round($ingred['value'], 2) }}</span></li>
 
+						@endforeach
+				
+					@endif 
 				</ul>
 			</div>
 		</div>
@@ -34,13 +45,13 @@
 @section('js')
 	<script>
 	var $loading = $('.loading').hide();
-	$(document)
-	  .ajaxStart(function () {
-	    $loading.show();
-	  })
-	  .ajaxStop(function () {
-	    $loading.hide();
-	  });
+	// $(document)
+	//   .ajaxStart(function () {
+	//     $loading.show();
+	//   })
+	//   .ajaxStop(function () {
+	//     $loading.hide();
+	//   });
 
 	$(".upload-file").click(function () {
 	  $("input[type='file']").trigger('click');
@@ -84,49 +95,49 @@
 	 });
 
 	// Submit Form with ajax
-	$('button.ajax').on('click', function(e) {
-		e.preventDefault();
-	    $.ajax({
-	        // Your server script to process the upload
-	        url: '/imgclarifai',
-	        type: 'POST',
+	// $('button.ajax').on('click', function(e) {
+	// 	e.preventDefault();
+	//     $.ajax({
+	//         // Your server script to process the upload
+	//         url: '/imgclarifai',
+	//         type: 'POST',
 
-	        // Form data
-	        data: new FormData($('form')[0]),
+	//         // Form data
+	//         data: new FormData($('form')[0]),
 
-	        // Tell jQuery not to process data or worry about content-type
-	        // You *must* include these options!
-	        cache: false,
-	        contentType: false,
-	        processData: false,
+	//         // Tell jQuery not to process data or worry about content-type
+	//         // You *must* include these options!
+	//         cache: false,
+	//         contentType: false,
+	//         processData: false,
 
-	        // Custom XMLHttpRequest
-	        xhr: function() {
-	            var myXhr = $.ajaxSettings.xhr();
-	            if (myXhr.upload) {
-	                // For handling the progress of the upload
-	                myXhr.upload.addEventListener('progress', function(e) {
-	                    if (e.lengthComputable) {
-	                        $('progress').attr({
-	                            value: e.loaded,
-	                            max: e.total,
-	                        });
-	                    }
-	                } , false);
-	            }
-	            return myXhr;
-	        },
-	        success: function (result) {
-	              console.log(result);
-	              var ul = $("ul.all-items");
-	              result.forEach(function(objItem) {
-	            	var name = objItem.name;
-	            	ul.append("<li class='animated fadeInUp'>" + name + "</li>");
+	//         // Custom XMLHttpRequest
+	//         xhr: function() {
+	//             var myXhr = $.ajaxSettings.xhr();
+	//             if (myXhr.upload) {
+	//                 // For handling the progress of the upload
+	//                 myXhr.upload.addEventListener('progress', function(e) {
+	//                     if (e.lengthComputable) {
+	//                         $('progress').attr({
+	//                             value: e.loaded,
+	//                             max: e.total,
+	//                         });
+	//                     }
+	//                 } , false);
+	//             }
+	//             return myXhr;
+	//         },
+	//         success: function (result) {
+	//               console.log(result);
+	//               var ul = $("ul.all-items");
+	//               result.forEach(function(objItem) {
+	//             	var name = objItem.name;
+	//             	ul.append("<li class='animated fadeInUp'>" + name + "</li>");
 	            	
-	              });
-	        }
-	    });
-	});
+	//               });
+	//         }
+	//     });
+	// });
 
 	</script>
 @endsection
