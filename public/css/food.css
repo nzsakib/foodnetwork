@@ -10,13 +10,13 @@
 	color: #fff !important;
 }
 
-ul.dropdown-menu {
+.food-nav ul.dropdown-menu {
 	background: #37474f;
 }
-ul.dropdown-menu a {
+.food-nav ul.dropdown-menu a {
 	padding: 5px;
 }
-ul.dropdown-menu a:hover {
+.food-nav ul.dropdown-menu a:hover {
 	background: #263238;
 }
 
