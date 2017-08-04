@@ -34,12 +34,7 @@
 							<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
 						</span></a> 
 					</li>
-					<li>
-						<a href="#">Security 
-						<span class="icon-right">
-							<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-						</span></a> 
-					</li>
+					
 				</ul>
 			</div>
 			<div class="col-md-9">

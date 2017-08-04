@@ -3,37 +3,45 @@
 @section('content')
 
 <section class="shop-profile">
-    {{-- <div class="profile"> --}}
+    <div class="profile"> <!-- profile header bg -->
         <div class="container">
 
             <div class="row">
                 @include('partials.notice')
-                <div class="col-xs-12 col-sm-12  col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-12  col-md-8 col-lg-8 profile-header">
                     <h2>{{ $shop->name }}</h2>
-                    @if ( isset($shop->opening_hours) && $shop->opening_hours->open_now )
-                        <a class="btn btn-sm btn-green">Open</a>
-                    @else 
-                        <a class="btn btn-sm btn-red">Closed</a>
-                    @endif 
-                    <div class="claim">
-                        
+                    <span class="open">
+                        @if ( isset($shop->opening_hours) && $shop->opening_hours->open_now )
+                            <a class="btn btn-sm btn-green">Open</a>
+                        @else 
+                            <a class="btn btn-sm btn-red">Closed</a>
+                        @endif 
+                    </span>
+                    <div class="address">
+                        <p> <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            {{ $shop->formatted_address }}</p>
                     </div>
-                    @if ( isset($shop->rating) )
-                        @for ($i=0; $i < (int)$shop->rating; $i++)
-                            <i class="fa fa-star"></i>
-                        @endfor
-                        @for ($i=0; $i < 5-(int)$shop->rating; $i++)
-                            <i class="fa fa-star-o"></i>
-                        @endfor
-                    @endif
+                    <div class="restaurant-rating">
+                        @if ( isset($shop->rating) )
+                            @for ($i=0; $i < (int)$shop->rating; $i++)
+                                <i class="fa fa-star"></i>
+                            @endfor
+                            @for ($i=0; $i < 5-(int)$shop->rating; $i++)
+                                <i class="fa fa-star-o"></i>
+                            @endfor
+                        @endif
+                    </div>
                     
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 profile-desc">
                   
                    <div class="btn-group" role="group" aria-label="...">
-                     <a type="button" href="/share" class="btn btn-default"><i class="fa fa-share-square-o" aria-hidden="true"></i> Share</a>
-                     <a type="button" href="/restaurant/{{ $shop->place_id }}/bookmark" class="btn btn-default"> <i class="fa fa-bookmark" aria-hidden="true"></i>Bookmark</a>
+                     
+                     <a type="button" href="/restaurant/{{ $shop->place_id }}/bookmark" class="btn btn-default"> <i class="fa fa-bookmark" aria-hidden="true"></i>
+                        Bookmark</a>
                    </div>
+                   <br> <br>
+                   <h5>Share:</h5>
                    <!-- AddToAny BEGIN -->
                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
                    <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
@@ -47,17 +55,9 @@
                 </div> <!-- end column --> 
             </div> <!-- end row -->
 
-            <!-- gallary and info section -->
-            <div class="row">
-                <div class="col-md-3 card">
-                    
-                </div>
-                <div class="col-md-9 img-gallary">
-                    
-                </div>
-            </div>
+            
         </div> <!-- end container -->
-    {{-- </div> end profile --}}
+    </div> <!-- profile header bg -->
 </section>
 <!-- end:Inner page hero -->
 <section class="container">
@@ -87,7 +87,7 @@
     <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
     
     <input type="radio" id="star1" name="rating" value="1" />
-    <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+    <label class = "full" for="star1" title="Really Bad - 1 star"></label>
     
 </fieldset>
                 </div>

@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="recipe">
 			
-			<h1 class="animated infinite pulse">What's on <span>Your Fridge ?</span></h1>
+			<h1>What's on <span>Your Fridge ?</span></h1>
 			<div class="ingredients">
 				<form action="{{ url('recipe') }}" method="POST">
 					{{ csrf_field() }}

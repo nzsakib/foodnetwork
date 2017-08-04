@@ -48,14 +48,7 @@
 						Profile Overview
 					</a>
 				</li>
-				<li>
-					<a href="/profile/{{ $user->id }}/friends">
-						<span class="icon-left">
-							<i class="fa fa-users" aria-hidden="true"></i>
-						</span>
-						Friends
-					</a>
-				</li>
+				
 				<li>
 					<a href="/profile/{{ $user->id }}/reviews">
 					<span class="icon-left">
