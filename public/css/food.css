@@ -137,6 +137,10 @@
 	/*display: none;*/
 }
 
+.clarifai-form button {
+	margin-top: 20px;
+}
+
 .clarifai-form input[type=file] {
 	display: none;
 }

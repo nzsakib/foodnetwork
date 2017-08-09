@@ -62,7 +62,7 @@
 						<span class="icon-left">
 							<i class="fa fa-camera" aria-hidden="true"></i>
 						</span>
-						Business Photos
+						Photos
 					</a>
 				</li>
 				<li>
@@ -73,14 +73,7 @@
 						Bookmarks
 					</a>
 				</li>
-				<li>
-					<a href="/profile/{{ $user->id }}/recipe">
-						<span class="icon-left">
-							<i class="fa fa-spoon" aria-hidden="true"></i>
-						</span>
-						Recipe
-					</a>
-				</li>
+				
 			</ul>
 		</div> <!-- end col-md-3 and sidebar -->
 

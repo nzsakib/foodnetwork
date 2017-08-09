@@ -52,7 +52,7 @@
                     <h4>Phone: <a href="tel:+88028811381">+8802 8811381</a></h4> </div>
                 <div class="col-xs-12 col-sm-5 additional-info color-gray">
                     <h4>Addition informations</h4>
-                    <p>Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by Nazmus Sakib</p>
+                    <p>Made by Nazmus Sakib & Fhamida Islam Lima</p>
                 </div>
             </div>
         </div>
