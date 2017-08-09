@@ -20,7 +20,7 @@
             <div class="col-xs-12 col-sm-2 pages color-gray">
                 <h4>Pages</h4>
                 <ul>
-                    <li><a href="#">East west University</a> </li>
+                    <li><a href="/restaurants/East West University (EWU), Aftab Nagar Main Road, Dhaka, Bangladesh">East west University</a> </li>
                     <li><a href="{{ url('auth/register') }}">User Sign Up Page</a> </li>
                     <li><a href="{{ url('auth/login') }}">Login Page</a> </li>
                     
@@ -29,11 +29,11 @@
             <div class="col-xs-12 col-sm-3 popular-locations color-gray">
                 <h4>Popular locations</h4>
                 <ul>
-                    <li><a href="#">Banasree</a> </li>
-                    <li><a href="#">EWU</a> </li>
-                    <li><a href="#">Khilgaon Taltola</a> </li>
-                    <li><a href="#">Shiddheshori</a> </li>
-                    <li><a href="#">Rampura</a> </li>
+                    <li><a href="/restaurants/Banasree, Dhaka, Dhaka Division, Bangladesh">Banasree</a> </li>
+                    <li><a href="/restaurants/East West University (EWU), Aftab Nagar Main Road, Dhaka, Bangladesh">EWU</a> </li>
+                    <li><a href="/restaurants/Taltola, Khilgaon, Dhaka, Dhaka Division, Bangladesh">Khilgaon Taltola</a> </li>
+                    <li><a href="/restaurants/Shiddheswari Road, Dhaka, Dhaka Division, Bangladesh">Shiddheshori</a> </li>
+                    <li><a href="/restaurants/Hatir Jheel, Tejgaon Circle, Dhaka Division, Bangladesh">Hatir Jheel</a> </li>
                     
                 </ul>
             </div>
