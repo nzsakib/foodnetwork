@@ -9,6 +9,7 @@
 
 ## Project Presentation Link 
 - [Google Drive](https://drive.google.com/open?id=1a8-RJUB7eOnYjv89U38f2Q4JPAcHn5kj) 
+- [Powerpoint Online - One Drive](https://1drv.ms/p/s!AmjuUdR-qDyphBo5JSWKmQO98DbP)
 
 ## About Laravel
 
